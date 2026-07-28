@@ -14,5 +14,7 @@ function inline(dir, name) {
 const out = tpl
   .replace(/\{\{IMG:([^}]+)\}\}/g, (m, n) => inline("web", n))
   .replace(/\{\{VID:([^}]+)\}\}/g, (m, n) => inline("video", n));
-fs.writeFileSync(path.join(root, "index.html"), out);
-console.log("index.html written:", (out.length / 1024 / 1024).toFixed(2) + " MB");
+// NOTE: index.html is now the mobile-first build with external assets (edited directly).
+// This script only produces the self-contained single-file variant used for the claude.ai artifact.
+fs.writeFileSync(path.join(root, "artifact.html"), out);
+console.log("artifact.html written:", (out.length / 1024 / 1024).toFixed(2) + " MB");
