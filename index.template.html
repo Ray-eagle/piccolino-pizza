@@ -326,7 +326,7 @@
     </div>
   </div>
   <div class="hero-photo rv">
-    <div class="frame"><video data-vid="club-pizza.mp4" poster="{{IMG:club-pizza.jpg}}" autoplay muted loop playsinline aria-label="Club pizza video from the Piccolino kitchen"></video></div>
+    <div class="frame"><video data-vid="club-slow.mp4" data-rate="0.35" poster="{{IMG:club-slow-poster.jpg}}" autoplay muted loop playsinline aria-label="Club pizza served, in slow motion"></video></div>
     <span class="chip" data-i18n="chip_hero">Club Pizza — house favorite</span>
   </div>
 </section>
@@ -498,118 +498,118 @@
   // =============== REAL MENU DATA (from @piccolino_pizza menu posters) ===============
   const MENU = [
     { id:"pizza", t:{en:"Pizza",sq:"Pizza"}, tag:{en:"choose your taste",sq:"zgjidh shijen tënde"}, sizes:["20 cm","28 cm","33 cm","40 cm"], items:[
-      { n:"Margarita", d:"salcë domate, guda", p:[250,350,500,700] },
-      { n:"Ham Classic", d:"salcë domate, guda, proshutë", p:[300,450,600,1000] },
-      { n:"Bacon Classic", d:"salcë domate, guda, pancetë", p:[300,450,600,1000] },
-      { n:"Gustoza", d:"salcë domate, guda, pancetë, proshutë, speca", p:[300,500,700,1100] },
-      { n:"Napoletana", d:"salcë domate, mozarella, borzilok i freskët", p:[300,400,550,800] },
-      { n:"Capricioza", d:"salcë domate, guda, proshutë, kërpudha, speca, ullinj", p:[300,500,700,1200] },
-      { n:"Speciale", d:"salcë domate, guda, proshutë, pancetë, kërpudha, peperon, speca", p:[300,500,700,1200] },
-      { n:"Mexicana", d:"salcë domate, guda, peperoni, milanez, kërpudha, speca, ullinj, domate, misra", p:[300,500,700,1200] },
-      { n:"Crudo", d:"salcë domate, guda, proshutë, pancetë, milanez, ullinj, speca", p:[300,500,700,1200] },
-      { n:"Arabica", d:"djathë, guda, mozarella, hurma arabike, mjalti, gorgonzola", p:[300,500,700,1200] },
-      { n:"Vegeteriane", d:"salcë domate, guda, kërpudha, domate, ullinj, qepë", p:[300,450,650,1100] },
-      { n:"4 Djathrat", d:"salcë domate, guda, mozarella, gorgonzola, djathë feta", p:[300,500,700,1200] },
-      { n:"Rucola", d:"salcë domate, guda, pomodorini, rucola, qafë derri i tymosur, parmixhano, balsam", p:[350,600,900,1300] },
-      { n:"Mushroom Classic", d:"salcë domate, guda, pancetë, kërpudha, djathë feta", p:[300,500,700,1200] },
-      { n:"Light", d:"salcë domate, guda, kërpudha, fileto pule", p:[300,500,700,1200] },
-      { n:"Cezar", d:"salcë cezar, guda, pancetë, fileto pule", p:[300,500,700,1200] },
-      { n:"Piccolino", d:"salcë mustardë, guda, domate, fileto pule", p:[300,500,700,1200] },
-      { n:"Nuggets", d:"salcë domate, guda, patate, nuggets", p:[300,500,700,1200] },
-      { n:"Potato Bacon", d:"salcë domate, guda, pancetë, domate, patate", p:[300,500,700,1200] },
-      { n:"Diavola", d:"salcë domate, guda, peperoni", p:[300,500,700,1200] },
-      { n:"Hawai", d:"salcë domate, guda, ananas, proshutë", p:[300,500,700,1200] },
-      { n:"Carbonara", d:"pana, guda, pancetë, kërpudha", p:[300,500,700,1200] },
-      { n:"Tono", d:"salcë domate, guda, ullinj, tono", p:[300,500,700,1200] },
-      { n:"Tartuf", d:"kërpudhë, tartuf, mozarella/guda", p:[300,500,700,1200] }
+      { n:"Margarita", d:"salcë domate, guda", de:"tomato sauce, gouda", p:[250,350,500,700] },
+      { n:"Ham Classic", d:"salcë domate, guda, proshutë", de:"tomato sauce, gouda, ham", p:[300,450,600,1000] },
+      { n:"Bacon Classic", d:"salcë domate, guda, pancetë", de:"tomato sauce, gouda, bacon", p:[300,450,600,1000] },
+      { n:"Gustoza", d:"salcë domate, guda, pancetë, proshutë, speca", de:"tomato sauce, gouda, bacon, ham, peppers", p:[300,500,700,1100] },
+      { n:"Napoletana", d:"salcë domate, mozarella, borzilok i freskët", de:"tomato sauce, mozzarella, fresh basil", p:[300,400,550,800] },
+      { n:"Capricioza", d:"salcë domate, guda, proshutë, kërpudha, speca, ullinj", de:"tomato sauce, gouda, ham, mushrooms, peppers, olives", p:[300,500,700,1200] },
+      { n:"Speciale", d:"salcë domate, guda, proshutë, pancetë, kërpudha, peperon, speca", de:"tomato sauce, gouda, ham, bacon, mushrooms, pepperoni, peppers", p:[300,500,700,1200] },
+      { n:"Mexicana", d:"salcë domate, guda, peperoni, milanez, kërpudha, speca, ullinj, domate, misra", de:"tomato sauce, gouda, pepperoni, salami, mushrooms, peppers, olives, tomato, corn", p:[300,500,700,1200] },
+      { n:"Crudo", d:"salcë domate, guda, proshutë, pancetë, milanez, ullinj, speca", de:"tomato sauce, gouda, prosciutto, bacon, salami, olives, peppers", p:[300,500,700,1200] },
+      { n:"Arabica", d:"djathë, guda, mozarella, hurma arabike, mjalti, gorgonzola", de:"cheese, gouda, mozzarella, dates, honey, gorgonzola", p:[300,500,700,1200] },
+      { n:"Vegeteriane", d:"salcë domate, guda, kërpudha, domate, ullinj, qepë", de:"tomato sauce, gouda, mushrooms, tomato, olives, onion", p:[300,450,650,1100] },
+      { n:"4 Djathrat", d:"salcë domate, guda, mozarella, gorgonzola, djathë feta", de:"tomato sauce, gouda, mozzarella, gorgonzola, feta", p:[300,500,700,1200] },
+      { n:"Rucola", d:"salcë domate, guda, pomodorini, rucola, qafë derri i tymosur, parmixhano, balsam", de:"tomato sauce, gouda, cherry tomatoes, arugula, smoked pork neck, parmesan, balsamic", p:[350,600,900,1300] },
+      { n:"Mushroom Classic", d:"salcë domate, guda, pancetë, kërpudha, djathë feta", de:"tomato sauce, gouda, bacon, mushrooms, feta", p:[300,500,700,1200] },
+      { n:"Light", d:"salcë domate, guda, kërpudha, fileto pule", de:"tomato sauce, gouda, mushrooms, chicken fillet", p:[300,500,700,1200] },
+      { n:"Cezar", d:"salcë cezar, guda, pancetë, fileto pule", de:"caesar sauce, gouda, bacon, chicken fillet", p:[300,500,700,1200] },
+      { n:"Piccolino", d:"salcë mustardë, guda, domate, fileto pule", de:"mustard sauce, gouda, tomato, chicken fillet", p:[300,500,700,1200] },
+      { n:"Nuggets", d:"salcë domate, guda, patate, nuggets", de:"tomato sauce, gouda, fries, nuggets", p:[300,500,700,1200] },
+      { n:"Potato Bacon", d:"salcë domate, guda, pancetë, domate, patate", de:"tomato sauce, gouda, bacon, tomato, fries", p:[300,500,700,1200] },
+      { n:"Diavola", d:"salcë domate, guda, peperoni", de:"tomato sauce, gouda, pepperoni", p:[300,500,700,1200] },
+      { n:"Hawai", d:"salcë domate, guda, ananas, proshutë", de:"tomato sauce, gouda, pineapple, ham", p:[300,500,700,1200] },
+      { n:"Carbonara", d:"pana, guda, pancetë, kërpudha", de:"cream, gouda, bacon, mushrooms", p:[300,500,700,1200] },
+      { n:"Tono", d:"salcë domate, guda, ullinj, tono", de:"tomato sauce, gouda, olives, tuna", p:[300,500,700,1200] },
+      { n:"Tartuf", d:"kërpudhë, tartuf, mozarella/guda", de:"mushrooms, truffle, mozzarella/gouda", p:[300,500,700,1200] }
     ]},
     { id:"dolce", t:{en:"Dolce Vitta",sq:"Dolce Vitta"}, tag:{en:"sweet pizzas",sq:"pizza të ëmbla"}, sizes:["20 cm","28 cm"],
       note:{en:"Make your pizza your way — half savory, half sweet!",sq:"Përgatisni picën sipas dëshirës: gjysëm të kripur, gjysëm të ëmbël!"}, items:[
-      { n:"Pizza Oreo", d:"nutella, luleshtrydhe, banane, oreo", p:[300,500] },
-      { n:"Pizza Kinder", d:"nutella, luleshtrydhe, banane, kinder bueno", p:[350,600] },
-      { n:"Calzone Nutella", d:"nutella, banane, M&M", p:"500" }
+      { n:"Pizza Oreo", d:"nutella, luleshtrydhe, banane, oreo", de:"nutella, strawberries, banana, oreo", p:[300,500] },
+      { n:"Pizza Kinder", d:"nutella, luleshtrydhe, banane, kinder bueno", de:"nutella, strawberries, banana, kinder bueno", p:[350,600] },
+      { n:"Calzone Nutella", d:"nutella, banane, M&M", de:"nutella, banana, M&M", p:"500" }
     ]},
     { id:"burgers", t:{en:"Burgers",sq:"Burgers"}, tag:{en:"fresh, tasty, ours — 100% beef",sq:"të freskëta, të shijshme, tonat — 100% viç"}, items:[
-      { n:"Classic Burger", d:"salcë, sallatë jeshile, domate, qofte, guda, patate", p:"250" },
-      { n:"Cheese Burger", d:"salcë, kastravec turshi, pancetë, qofte, guda, patate", p:"300" },
-      { n:"Smash Burger", d:"mish i freskët 100% viç, iceberg, domate, qepë", p:"400", b:1 },
-      { n:"Chicken Burger", d:"salcë, sallatë jeshile, domate, guda, fileto pule, patate", p:"300" },
-      { n:"Chicken Finger Burger", d:"salcë, sallatë jeshile, domate, guda, chicken fingers, patate", p:"350" },
-      { n:"Double Burger", d:"salcë, sallatë jeshile, guda, 2 qofte, pancetë, domate, kastravec turshi, patate", p:"400" },
-      { n:"Bacon Burger", d:"salcë, rukola, guda, 2 qofte, pancetë, vezë, patate", p:"450" },
-      { n:"Hangover Burger", d:"salcë, sallatë jeshile, guda, 3 qofte, pancetë, domate, qepë, patate", p:"500" },
-      { n:"Pizza Burger", d:"brumë pize, 2 qofte, kroketa djathi, domate, kastravec, turshi, patate", p:"500", b:1 },
-      { n:"Onion Burger", d:"salcë, sallatë jeshile, 2 qofte, guda, turshi, onion rings, patate", p:"500", b:1 }
+      { n:"Classic Burger", d:"salcë, sallatë jeshile, domate, qofte, guda, patate", de:"sauce, lettuce, tomato, patty, gouda, fries", p:"250" },
+      { n:"Cheese Burger", d:"salcë, kastravec turshi, pancetë, qofte, guda, patate", de:"sauce, pickles, bacon, patty, gouda, fries", p:"300" },
+      { n:"Smash Burger", d:"mish i freskët 100% viç, iceberg, domate, qepë", de:"fresh 100% beef, iceberg, tomato, onion", p:"400", b:1 },
+      { n:"Chicken Burger", d:"salcë, sallatë jeshile, domate, guda, fileto pule, patate", de:"sauce, lettuce, tomato, gouda, chicken fillet, fries", p:"300" },
+      { n:"Chicken Finger Burger", d:"salcë, sallatë jeshile, domate, guda, chicken fingers, patate", de:"sauce, lettuce, tomato, gouda, chicken fingers, fries", p:"350" },
+      { n:"Double Burger", d:"salcë, sallatë jeshile, guda, 2 qofte, pancetë, domate, kastravec turshi, patate", de:"sauce, lettuce, gouda, 2 patties, bacon, tomato, pickles, fries", p:"400" },
+      { n:"Bacon Burger", d:"salcë, rukola, guda, 2 qofte, pancetë, vezë, patate", de:"sauce, arugula, gouda, 2 patties, bacon, egg, fries", p:"450" },
+      { n:"Hangover Burger", d:"salcë, sallatë jeshile, guda, 3 qofte, pancetë, domate, qepë, patate", de:"sauce, lettuce, gouda, 3 patties, bacon, tomato, onion, fries", p:"500" },
+      { n:"Pizza Burger", d:"brumë pize, 2 qofte, kroketa djathi, domate, kastravec, turshi, patate", de:"pizza dough, 2 patties, cheese croquettes, tomato, pickles, fries", p:"500", b:1 },
+      { n:"Onion Burger", d:"salcë, sallatë jeshile, 2 qofte, guda, turshi, onion rings, patate", de:"sauce, lettuce, 2 patties, gouda, pickles, onion rings, fries", p:"500", b:1 }
     ]},
     { id:"meats", t:{en:"Meats",sq:"Mish"}, tag:{en:"quality, taste, Piccolino!",sq:"cilësi, shije, Piccolino!"}, items:[
-      { n:"Chicken Wings", d:"krahë pule të marinuara & të pjekura — 0.5 kg / 1 kg", p:"600 / 1200" },
-      { n:"Chicken Fingers", d:"mini kotoleta pule, pite, patate, salcë, domate, kastravec", p:"500" },
-      { n:"Shishqebap Pule", d:"2 shishqebap pule, pite, patate, salcë, domate, kastravec", p:"500" },
-      { n:"Piccolino Box", d:"krahë pule të marinuara, chicken fingers, spring rolls, onion rings, kroketa djathi, brumë me salçiçe", p:"500 / 1000" }
+      { n:"Chicken Wings", d:"krahë pule të marinuara & të pjekura — 0.5 kg / 1 kg", de:"marinated & roasted chicken wings — 0.5 kg / 1 kg", p:"600 / 1200" },
+      { n:"Chicken Fingers", d:"mini kotoleta pule, pite, patate, salcë, domate, kastravec", de:"mini chicken cutlets, pita, fries, sauce, tomato, cucumber", p:"500" },
+      { n:"Shishqebap Pule", d:"2 shishqebap pule, pite, patate, salcë, domate, kastravec", de:"2 chicken skewers, pita, fries, sauce, tomato, cucumber", p:"500" },
+      { n:"Piccolino Box", d:"krahë pule të marinuara, chicken fingers, spring rolls, onion rings, kroketa djathi, brumë me salçiçe", de:"marinated wings, chicken fingers, spring rolls, onion rings, cheese croquettes, sausage rolls", p:"500 / 1000" }
     ]},
     { id:"sandwich", t:{en:"Sandwich",sq:"Sandwich"}, tag:{en:"fresh, tasty, ours",sq:"të freskëta, të shijshme, tonat"}, items:[
-      { n:"Sandwich me brumë pice", d:"salcë, sallatë jeshile, proshutë, guda, domate", p:"200" },
-      { n:"Vegetarian", d:"djathë feta, domate, kastravec, ullinj, vaj, rigon", p:"200" },
-      { n:"Chicken", d:"salcë, sallatë jeshile, domate, guda, chicken", p:"200" },
-      { n:"Tono", d:"salcë, sallatë jeshile, tono, domate, misër", p:"200" },
-      { n:"Bacon Classic", d:"salcë, domate, pancetë, guda, vezë", p:"250" },
-      { n:"Hungarez", d:"salcë, sallam hungarez, domate, guda", p:"200" },
-      { n:"Sandwich Pesto", d:"bagete, pesto, pomodorini, mozzarella, rucola, proshutë e tymosur", p:"300" },
-      { n:"Tost", d:"majonezë, guda, proshutë", p:"100" },
-      { n:"Tost me fileto pule", d:"majonezë, guda, fileto pule, patate", p:"150" }
+      { n:"Sandwich me brumë pice", d:"salcë, sallatë jeshile, proshutë, guda, domate", de:"pizza-dough bread, sauce, lettuce, ham, gouda, tomato", p:"200" },
+      { n:"Vegetarian", d:"djathë feta, domate, kastravec, ullinj, vaj, rigon", de:"feta, tomato, cucumber, olives, oil, oregano", p:"200" },
+      { n:"Chicken", d:"salcë, sallatë jeshile, domate, guda, chicken", de:"sauce, lettuce, tomato, gouda, chicken", p:"200" },
+      { n:"Tono", d:"salcë, sallatë jeshile, tono, domate, misër", de:"sauce, lettuce, tuna, tomato, corn", p:"200" },
+      { n:"Bacon Classic", d:"salcë, domate, pancetë, guda, vezë", de:"sauce, tomato, bacon, gouda, egg", p:"250" },
+      { n:"Hungarez", d:"salcë, sallam hungarez, domate, guda", de:"sauce, hungarian salami, tomato, gouda", p:"200" },
+      { n:"Sandwich Pesto", d:"bagete, pesto, pomodorini, mozzarella, rucola, proshutë e tymosur", de:"baguette, pesto, cherry tomatoes, mozzarella, arugula, smoked ham", p:"300" },
+      { n:"Tost", d:"majonezë, guda, proshutë", de:"toast — mayo, gouda, ham", p:"100" },
+      { n:"Tost me fileto pule", d:"majonezë, guda, fileto pule, patate", de:"toast — mayo, gouda, chicken fillet, fries", p:"150" }
     ]},
     { id:"pita", t:{en:"Pita",sq:"Pita"}, tag:{en:"fresh, tasty, ours",sq:"të freskëta, të shijshme, tonat"}, items:[
-      { n:"Pita Piccolino", d:"salcë, fileto pule, patate, domate", p:"300" },
-      { n:"Pita Arabe Chicken", d:"salcë guda, fileto pule, patate, domate", p:"300" },
-      { n:"Pita Arabe Llukanik", d:"salcë, llukanik, patate, domate", p:"300" },
-      { n:"Pita Pita", d:"3 pite, fileto pule, domate, kastravec, guda — me patate dhe salcë", p:"400" },
-      { n:"Quesadilla", d:"2 pite, fileto pule, guda, kërpudha, patate, salcë", p:"300" },
-      { n:"Souvlaki", d:"shishqebap / fileto pule, sallatë jeshile, domate, kastravec, xaxik, patate", p:"300" }
+      { n:"Pita Piccolino", d:"salcë, fileto pule, patate, domate", de:"sauce, chicken fillet, fries, tomato", p:"300" },
+      { n:"Pita Arabe Chicken", d:"salcë guda, fileto pule, patate, domate", de:"gouda sauce, chicken fillet, fries, tomato", p:"300" },
+      { n:"Pita Arabe Llukanik", d:"salcë, llukanik, patate, domate", de:"sauce, sausage, fries, tomato", p:"300" },
+      { n:"Pita Pita", d:"3 pite, fileto pule, domate, kastravec, guda — me patate dhe salcë", de:"3 pitas, chicken fillet, tomato, cucumber, gouda — with fries and sauce", p:"400" },
+      { n:"Quesadilla", d:"2 pite, fileto pule, guda, kërpudha, patate, salcë", de:"2 pitas, chicken fillet, gouda, mushrooms, fries, sauce", p:"300" },
+      { n:"Souvlaki", d:"shishqebap / fileto pule, sallatë jeshile, domate, kastravec, xaxik, patate", de:"chicken skewer or fillet, lettuce, tomato, cucumber, tzatziki, fries", p:"300" }
     ]},
     { id:"calzone", t:{en:"Calzone",sq:"Calzone"}, tag:{en:"fresh dough, delicious filling",sq:"brumë i freskët, mbushje e shijshme"},
       note:{en:"Order your calzone with the fillings you love!",sq:"Porositni calzonen tuaj me produktet e dëshiruara!"}, items:[
-      { n:"Calzone Mozzarella", d:"rukola, qafë derri e tymosur, mozzarella, pomodorini — 20 cm ose 28 cm", p:"500" }
+      { n:"Calzone Mozzarella", d:"rukola, qafë derri e tymosur, mozzarella, pomodorini — 20 cm ose 28 cm", de:"arugula, smoked pork neck, mozzarella, cherry tomatoes — 20 cm or 28 cm", p:"500" }
     ]},
     { id:"penerli", t:{en:"Penerli",sq:"Penerli"}, tag:{en:"stuffed with quality ingredients",sq:"të mbushura me përbërës cilësorë"}, items:[
-      { n:"Penerli Classic", d:"guda & pancetë / me vezë", p:"250 / 300" },
-      { n:"Penerli Vegetariane", d:"guda, kërpudha, speca, ullinj, domate", p:"300" },
-      { n:"Penerli Proshutë", d:"guda, proshutë, kërpudha, speca, ullinj", p:"300" },
-      { n:"Penerli 4 Djathrat", d:"guda, mozarella, djathë feta, gorgonzola", p:"300" },
-      { n:"Penerli Milanez", d:"guda, milanez, djathë feta", p:"300" }
+      { n:"Penerli Classic", d:"guda & pancetë / me vezë", de:"gouda & bacon / with egg", p:"250 / 300" },
+      { n:"Penerli Vegetariane", d:"guda, kërpudha, speca, ullinj, domate", de:"gouda, mushrooms, peppers, olives, tomato", p:"300" },
+      { n:"Penerli Proshutë", d:"guda, proshutë, kërpudha, speca, ullinj", de:"gouda, ham, mushrooms, peppers, olives", p:"300" },
+      { n:"Penerli 4 Djathrat", d:"guda, mozarella, djathë feta, gorgonzola", de:"gouda, mozzarella, feta, gorgonzola", p:"300" },
+      { n:"Penerli Milanez", d:"guda, milanez, djathë feta", de:"gouda, milano salami, feta", p:"300" }
     ]},
     { id:"bruschetti", t:{en:"Bruschetti",sq:"Bruschetti"}, tag:{en:"the taste that brings you back",sq:"shija që të bën të kthehesh"}, items:[
-      { n:"Bruschetti me hudhër", d:"hudhër, guda", p:"100" },
-      { n:"Bruschetti me hudhër dhe guda", d:"hudhër, guda, djathë feta, pancetë dhe domate", p:"150" },
-      { n:"Bruschetti me hudhër dhe guda (e madhe)", d:"hudhër, guda, djathë feta, pancetë dhe domate", p:"200" }
+      { n:"Bruschetti me hudhër", d:"hudhër, guda", de:"garlic, gouda", p:"100" },
+      { n:"Bruschetti me hudhër dhe guda", d:"hudhër, guda, djathë feta, pancetë dhe domate", de:"garlic, gouda, feta, bacon and tomato", p:"150" },
+      { n:"Bruschetti me hudhër dhe guda (e madhe)", d:"hudhër, guda, djathë feta, pancetë dhe domate", de:"large — garlic, gouda, feta, bacon and tomato", p:"200" }
     ]},
     { id:"club", t:{en:"Club Piccolino",sq:"Club Piccolino"}, tag:{en:"sandwiches stuffed with quality",sq:"sanduiça të mbushura me përbërës cilësorë"}, items:[
-      { n:"Club Sandwich me proshutë", d:"guda, proshutë, pancetë — me patate & salcë", p:"300" },
-      { n:"Club Sandwich me fileto pule", d:"guda, fileto pule — me patate & salcë", p:"350" },
-      { n:"Club Sandwich me proshutë gjel deti", d:"guda, proshutë gjel deti — me patate & salcë", p:"350" },
-      { n:"Club Pizza", d:"guda, proshutë, pancetë — me patate & salcë", p:"500" },
-      { n:"Burrito", d:"xaxiki, patate, marule, domate, qepë, mish derri ose pule", p:"400" }
+      { n:"Club Sandwich me proshutë", d:"guda, proshutë, pancetë — me patate & salcë", de:"gouda, ham, bacon — with fries & sauce", p:"300" },
+      { n:"Club Sandwich me fileto pule", d:"guda, fileto pule — me patate & salcë", de:"gouda, chicken fillet — with fries & sauce", p:"350" },
+      { n:"Club Sandwich me proshutë gjel deti", d:"guda, proshutë gjel deti — me patate & salcë", de:"gouda, turkey ham — with fries & sauce", p:"350" },
+      { n:"Club Pizza", d:"guda, proshutë, pancetë — me patate & salcë", de:"gouda, ham, bacon — with fries & sauce", p:"500" },
+      { n:"Burrito", d:"xaxiki, patate, marule, domate, qepë, mish derri ose pule", de:"tzatziki, fries, lettuce, tomato, onion, pork or chicken", p:"400" }
     ]},
     { id:"tacos", t:{en:"Tacos",sq:"Tacos"}, tag:{en:"fresh, spicy, unforgettable",sq:"shije e freskët, pikante, e paharrueshme"}, items:[
-      { n:"Tacos Pule", d:"guacamole, iceberg, fileto pule, sweet chilli, mix", p:"500" },
-      { n:"Tacos Viçi", d:"mish i grirë viçi, iceberg, sos", p:"700" }
+      { n:"Tacos Pule", d:"guacamole, iceberg, fileto pule, sweet chilli, mix", de:"chicken — guacamole, iceberg, chicken fillet, sweet chilli, mix", p:"500" },
+      { n:"Tacos Viçi", d:"mish i grirë viçi, iceberg, sos", de:"beef — minced beef, iceberg, sauce", p:"700" }
     ]},
     { id:"sallata", t:{en:"Salads",sq:"Sallata"}, tag:{en:"fresh, healthy, delicious",sq:"të freskëta, të shëndetshme, të shijshme"}, items:[
-      { n:"Green Salad", d:"sallatë jeshile, kastravec, qepë", p:"200" },
-      { n:"Cezar", d:"sallatë jeshile, fileto pule, bukë e thekur, misër, guda, salcë", p:"300" },
-      { n:"Tono", d:"sallatë jeshile, domate, ton, kastravec, misër, qepë, salcë", p:"300" },
-      { n:"Chef", d:"sallatë jeshile, domate, kastravec, karrota, proshutë, guda, vezë, salcë", p:"350" },
-      { n:"Rucola", d:"rucola, pomodorini, arra, mollë, mjaltë, balsam", p:"350" },
-      { n:"Fshati", d:"domate, kastravec, speca, ullinj, qepë, djathë feta", p:"300" }
+      { n:"Green Salad", d:"sallatë jeshile, kastravec, qepë", de:"lettuce, cucumber, onion", p:"200" },
+      { n:"Cezar", d:"sallatë jeshile, fileto pule, bukë e thekur, misër, guda, salcë", de:"lettuce, chicken fillet, croutons, corn, gouda, sauce", p:"300" },
+      { n:"Tono", d:"sallatë jeshile, domate, ton, kastravec, misër, qepë, salcë", de:"lettuce, tomato, tuna, cucumber, corn, onion, sauce", p:"300" },
+      { n:"Chef", d:"sallatë jeshile, domate, kastravec, karrota, proshutë, guda, vezë, salcë", de:"lettuce, tomato, cucumber, carrots, ham, gouda, egg, sauce", p:"350" },
+      { n:"Rucola", d:"rucola, pomodorini, arra, mollë, mjaltë, balsam", de:"arugula, cherry tomatoes, walnuts, apple, honey, balsamic", p:"350" },
+      { n:"Fshati", d:"domate, kastravec, speca, ullinj, qepë, djathë feta", de:"village salad — tomato, cucumber, peppers, olives, onion, feta", p:"300" }
     ]},
     { id:"pasta", t:{en:"Pasta",sq:"Pasta"}, tag:{en:"fresh, tasty, ours",sq:"të freskëta, të shijshme, tonat"}, items:[
-      { n:"Linguine me salcë të kuqe", d:"", p:"400" },
-      { n:"Linguine pana, kërpudhë", d:"", p:"400" },
-      { n:"Linguine tartuf", d:"", p:"400" }
+      { n:"Linguine me salcë të kuqe", d:"", de:"linguine with red sauce", p:"400" },
+      { n:"Linguine pana, kërpudhë", d:"", de:"linguine with cream & mushrooms", p:"400" },
+      { n:"Linguine tartuf", d:"", de:"truffle linguine", p:"400" }
     ]},
     { id:"sides", t:{en:"Side Dish",sq:"Side Dish"}, tag:{en:"on the side",sq:"anash"}, items:[
-      { n:"Patate të skuqura", d:"", p:"200" },
-      { n:"Racion kroketa djathi", d:"", p:"400" },
-      { n:"Racion onion rings", d:"", p:"250" }
+      { n:"Patate të skuqura", d:"", de:"french fries", p:"200" },
+      { n:"Racion kroketa djathi", d:"", de:"portion of cheese croquettes", p:"400" },
+      { n:"Racion onion rings", d:"", de:"portion of onion rings", p:"250" }
     ]}
   ];
 
@@ -622,17 +622,18 @@
     const nb = lang === "sq" ? "E RE" : "NEW";
     const secs = MENU.map(c => {
       let rows;
+      const descOf = it => (lang === "en" && it.de !== undefined) ? it.de : it.d;
       if (c.sizes) {
         const n = c.sizes.length;
         const head = `<div class="sizes-head" style="--nsz:${n}"><span style="text-align:left; color:var(--smoke); font-weight:700;"></span>${c.sizes.map(s=>`<span>${s}</span>`).join("")}</div>`;
         rows = head + c.items.map(it => {
           const ps = fmtP(it.p); const cells = c.sizes.map((_,i)=>`<span class="pr">${ps[i] !== undefined ? ps[i] : "—"}</span>`).join("");
-          return `<div class="mrow sized" style="--nsz:${n}"><span class="nm">${esc(it.n)}${it.b?`<span class="nbadge">${nb}</span>`:""}<span class="ds">${esc(it.d||"")}</span></span>${cells}</div>`;
+          return `<div class="mrow sized" style="--nsz:${n}"><span class="nm">${esc(it.n)}${it.b?`<span class="nbadge">${nb}</span>`:""}<span class="ds">${esc(descOf(it)||"")}</span></span>${cells}</div>`;
         }).join("");
         rows += `<p style="text-align:right; color:var(--smoke); font-size:.78rem; margin:.5rem 0 0;">${lang==="sq"?"çmimet në lekë":"prices in lek (L)"}</p>`;
       } else {
         rows = c.items.map(it =>
-          `<div class="mrow"><span class="nm">${esc(it.n)}${it.b?`<span class="nbadge">${nb}</span>`:""}${it.d?`<span class="ds">${esc(it.d)}</span>`:""}</span><span class="dots"></span><span class="pr">${it.p} L</span></div>`
+          `<div class="mrow"><span class="nm">${esc(it.n)}${it.b?`<span class="nbadge">${nb}</span>`:""}${descOf(it)?`<span class="ds">${esc(descOf(it))}</span>`:""}</span><span class="dots"></span><span class="pr">${it.p} L</span></div>`
         ).join("");
       }
       const note = c.note ? `<p class="note">${c.note[lang]}</p>` : "";
@@ -672,7 +673,7 @@
 
   // =============== videos: single copy of each clip, assigned at runtime ===============
   const VIDS = {
-    "club-pizza.mp4": "{{VID:club-pizza.mp4}}",
+    "club-slow.mp4": "{{VID:club-slow.mp4}}",
     "pizza-preview.mp4": "{{VID:pizza-preview.mp4}}",
     "pizza-burger-preview.mp4": "{{VID:pizza-burger-preview.mp4}}",
     "quality-preview.mp4": "{{VID:quality-preview.mp4}}"
@@ -681,6 +682,10 @@
   document.querySelectorAll("video[data-vid]").forEach(v => {
     if (reduceMotion) { v.removeAttribute("autoplay"); return; }
     v.src = VIDS[v.dataset.vid];
+    const rate = parseFloat(v.dataset.rate || "1");
+    const applyRate = () => { v.playbackRate = rate; };
+    applyRate();
+    v.addEventListener("play", applyRate);
     v.play().catch(()=>{});
   });
 
@@ -718,8 +723,8 @@
   };
   const EN = {};
   document.querySelectorAll("[data-i18n]").forEach(el => { EN[el.dataset.i18n] = el.innerHTML; });
-  document.getElementById("langBtn").addEventListener("click", () => {
-    lang = lang === "en" ? "sq" : "en";
+  function setLang(next){
+    lang = next;
     const dict = lang === "sq" ? SQ : EN;
     document.querySelectorAll("[data-i18n]").forEach(el => {
       const v = dict[el.dataset.i18n];
@@ -728,7 +733,8 @@
     document.getElementById("langBtn").textContent = lang === "sq" ? "ENGLISH" : "SHQIP";
     document.documentElement.lang = lang;
     renderMenu();
-  });
+  }
+  document.getElementById("langBtn").addEventListener("click", () => setLang(lang === "en" ? "sq" : "en"));
 
   renderMenu();
   route();

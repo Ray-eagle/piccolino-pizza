@@ -5,7 +5,7 @@
 <canvas id="cv"></canvas>
 <script>
 const JOBS = [
-  { src:"/assets/video/pizza-new.mp4", out:"pizza-preview", start:4, dur:10, posterAt:16 }
+  { src:"/assets/video/club-pizza.mp4", out:"club-slow", start:5.6, dur:2.6, posterAt:7.6 }
 ];
 const status = document.getElementById("status");
 window.__enc = {};
@@ -24,6 +24,7 @@ function pickType(){
 
 async function encodeOne(job, mime){
   const v = document.createElement("video");
+  window.__v = v;
   v.src = job.src; v.muted = true; v.playsInline = true;
   await new Promise((res,rej)=>{ v.onloadedmetadata = res; v.onerror = ()=>rej(new Error("load fail")); });
   const W = v.videoWidth, H = v.videoHeight;
@@ -31,13 +32,14 @@ async function encodeOne(job, mime){
   const ctx = cv.getContext("2d");
   v.currentTime = Math.min(job.start, Math.max(0, v.duration - job.dur));
   await new Promise(res => v.onseeked = res);
+  v.playbackRate = job.rate || 1;
   const stream = v.captureStream();
   const rec = new MediaRecorder(stream, { mimeType: mime, videoBitsPerSecond: 900000 });
   const chunks = [];
   rec.ondataavailable = e => { if (e.data.size) chunks.push(e.data); };
   const done = new Promise(res => rec.onstop = res);
   await v.play(); rec.start(250);
-  await new Promise(res => { const t0 = v.currentTime; const iv = setInterval(() => { if (v.currentTime - t0 >= job.dur) { clearInterval(iv); res(); } }, 200); });
+  await new Promise(res => { const t0 = v.currentTime; const iv = setInterval(() => { if (v.currentTime - t0 >= job.dur || v.ended || v.paused) { clearInterval(iv); res(); } }, 200); });
   rec.stop(); v.pause();
   await done;
   const blob = new Blob(chunks, { type: mime.split(";")[0] });
