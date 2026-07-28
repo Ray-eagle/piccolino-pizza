@@ -1,0 +1,878 @@
+<!doctype html>
+<html lang="sq">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#111010">
+  <meta name="description" content="Piccolino Fast Food & Pizza në Pedonalen e Korçës. Pizza, burger, club pizza dhe fast food të përgatitura në moment.">
+  <meta property="og:title" content="Piccolino — Fast Food & Pizza · Korçë">
+  <meta property="og:description" content="Një herë Piccolino, gjithmonë Piccolino. Shiko menunë dhe porosit direkt.">
+  <meta property="og:image" content="assets/web/club-pizza.jpg">
+  <meta property="og:type" content="restaurant">
+  <title>Piccolino — Fast Food & Pizza · Korçë</title>
+
+  <style>
+    :root{
+      --ink:#111010;
+      --surface:#1a1917;
+      --surface-2:#24221f;
+      --yellow:#ffcd39;
+      --yellow-2:#ffe07a;
+      --cream:#f7f3ea;
+      --muted:#aaa292;
+      --line:rgba(247,243,234,.13);
+      --shadow:0 20px 70px rgba(0,0,0,.44);
+      --radius:24px;
+      --header:68px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header) + 24px)}
+    body{
+      margin:0;
+      background:var(--ink);
+      color:var(--cream);
+      font:16px/1.6 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      -webkit-font-smoothing:antialiased;
+      overflow-x:hidden;
+    }
+    body.modal-open{overflow:hidden}
+    img{display:block;max-width:100%}
+    a{color:inherit}
+    button,input{font:inherit}
+    button{color:inherit}
+    :focus-visible{outline:3px solid var(--yellow);outline-offset:3px}
+    .shell{width:min(1180px,calc(100% - 32px));margin-inline:auto}
+    .display{
+      margin:0;
+      font-family:"Arial Black","Arial Bold",Arial,sans-serif;
+      font-weight:900;
+      letter-spacing:-.04em;
+      line-height:.94;
+      text-transform:uppercase;
+      text-wrap:balance;
+    }
+    .eyebrow{
+      margin:0 0 12px;
+      color:var(--yellow);
+      font-size:.73rem;
+      font-weight:900;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+    }
+    .serif{font-family:Georgia,"Times New Roman",serif;font-style:italic}
+    .muted{color:var(--muted)}
+    .yellow{color:var(--yellow)}
+    .btn{
+      min-height:48px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:9px;
+      padding:12px 20px;
+      border:1px solid transparent;
+      border-radius:999px;
+      background:var(--yellow);
+      color:var(--ink);
+      text-decoration:none;
+      text-transform:uppercase;
+      font-size:.78rem;
+      font-weight:950;
+      letter-spacing:.075em;
+      cursor:pointer;
+      transition:transform .16s ease,background .16s ease,border-color .16s ease;
+    }
+    .btn:hover{transform:translateY(-2px);background:var(--yellow-2)}
+    .btn.secondary{background:transparent;color:var(--cream);border-color:var(--line)}
+    .btn.secondary:hover{border-color:var(--yellow);color:var(--yellow);background:transparent}
+    .btn.icon svg{width:18px;height:18px}
+    .skip{position:fixed;left:12px;top:-80px;z-index:999;background:var(--yellow);color:var(--ink);padding:10px 14px;border-radius:10px}
+    .skip:focus{top:12px}
+
+    /* Header */
+    .site-header{
+      position:sticky;top:0;z-index:90;
+      height:var(--header);
+      border-bottom:1px solid var(--line);
+      background:rgba(17,16,16,.86);
+      backdrop-filter:blur(16px);
+    }
+    .header-inner{height:100%;display:flex;align-items:center;gap:24px}
+    .brand{display:flex;align-items:center;text-decoration:none;flex:none}
+    .brand img{width:auto;height:43px}
+    .desktop-nav{margin-left:auto;display:flex;align-items:center;gap:26px}
+    .desktop-nav a{text-decoration:none;color:var(--muted);font-weight:750;font-size:.9rem}
+    .desktop-nav a:hover{color:var(--cream)}
+    .header-actions{display:flex;gap:9px;align-items:center}
+    .lang{
+      min-width:46px;height:42px;border:1px solid var(--line);border-radius:999px;
+      background:transparent;color:var(--cream);font-weight:900;font-size:.74rem;cursor:pointer;
+    }
+    .header-order{min-height:42px;padding:9px 16px}
+
+    /* Hero */
+    .hero{
+      position:relative;
+      isolation:isolate;
+      overflow:hidden;
+      padding:clamp(54px,8vw,104px) 0 64px;
+    }
+    .hero:before{
+      content:"";position:absolute;z-index:-2;
+      width:min(760px,90vw);aspect-ratio:1;border:2px solid rgba(255,205,57,.25);
+      border-radius:50%;right:-280px;bottom:-480px;
+    }
+    .hero:after{
+      content:"";position:absolute;z-index:-3;inset:-20% auto auto -25%;
+      width:760px;height:760px;border-radius:50%;
+      background:radial-gradient(circle,rgba(255,205,57,.11),transparent 64%);
+    }
+    .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(40px,7vw,86px);align-items:center}
+    .hero h1{font-size:clamp(3.3rem,7.2vw,6.8rem)}
+    .hero-copy{max-width:620px}
+    .hero-lead{max-width:48ch;margin:22px 0 0;color:var(--muted);font-size:clamp(1rem,1.5vw,1.15rem)}
+    .hero-slogan{margin:14px 0 0;color:var(--cream);font-size:1.2rem}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+    .hero-trust{display:flex;flex-wrap:wrap;gap:9px 18px;margin-top:25px;color:var(--muted);font-size:.84rem;font-weight:700}
+    .hero-trust span{display:flex;align-items:center;gap:7px}
+    .hero-trust span:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--yellow)}
+    .hero-media{position:relative}
+    .hero-photo{
+      position:relative;
+      aspect-ratio:4/5;
+      border-radius:32px;
+      overflow:hidden;
+      box-shadow:var(--shadow);
+      transform:rotate(1.2deg);
+      background:var(--surface);
+    }
+    .hero-photo img{width:100%;height:100%;object-fit:cover}
+    .hero-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 58%,rgba(17,16,16,.62))}
+    .hero-chip{
+      position:absolute;z-index:2;left:-14px;bottom:28px;
+      padding:10px 15px;border-radius:999px;background:var(--yellow);color:var(--ink);
+      font-size:.72rem;font-weight:950;letter-spacing:.06em;text-transform:uppercase;
+      transform:rotate(-3deg);box-shadow:0 12px 28px rgba(0,0,0,.34)
+    }
+    .play-reel{
+      position:absolute;z-index:3;right:16px;bottom:16px;
+      width:52px;height:52px;border-radius:50%;border:1px solid rgba(255,255,255,.22);
+      background:rgba(17,16,16,.72);backdrop-filter:blur(8px);cursor:pointer;
+      display:grid;place-items:center;
+    }
+    .play-reel:before{
+      content:"";margin-left:4px;width:0;height:0;
+      border-top:7px solid transparent;border-bottom:7px solid transparent;border-left:11px solid var(--yellow)
+    }
+
+    .pulse-strip{overflow:hidden;background:var(--yellow);color:var(--ink);border-block:1px solid rgba(0,0,0,.18)}
+    .pulse-track{
+      width:max-content;display:flex;align-items:center;gap:24px;padding:11px 0;
+      animation:marquee 28s linear infinite;font-family:"Arial Black",Arial,sans-serif;
+      text-transform:uppercase;font-size:.88rem;letter-spacing:.055em;
+    }
+    .pulse-track span:after{content:"◆";margin-left:24px;font-size:.62rem}
+    @keyframes marquee{to{transform:translateX(-50%)}}
+
+    /* Sections */
+    section.content{padding:clamp(70px,9vw,110px) 0}
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:34px}
+    .section-head h2{font-size:clamp(2.35rem,5vw,4.4rem)}
+    .section-head p{margin:0;max-width:44ch;color:var(--muted)}
+
+    /* Signature */
+    .signature-grid{
+      display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(34px,7vw,84px);align-items:center
+    }
+    .signature-image{
+      position:relative;aspect-ratio:4/5;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)
+    }
+    .signature-image img{width:100%;height:100%;object-fit:cover}
+    .new-badge{
+      position:absolute;right:16px;top:16px;width:76px;height:76px;border-radius:50%;
+      display:grid;place-items:center;text-align:center;background:var(--yellow);color:var(--ink);
+      font-size:.69rem;font-weight:950;line-height:1.1;text-transform:uppercase;transform:rotate(7deg)
+    }
+    .signature-copy h2{font-size:clamp(2.65rem,5.5vw,5rem)}
+    .signature-copy .intro{font-size:1.08rem;color:var(--muted);max-width:52ch}
+    .feature-list{list-style:none;padding:0;margin:24px 0 28px;display:grid;gap:10px}
+    .feature-list li{display:flex;gap:11px;font-weight:750}
+    .feature-list li:before{content:"";width:9px;height:9px;flex:none;margin-top:8px;background:var(--yellow);transform:rotate(45deg)}
+
+    /* Menu */
+    .menu-section{background:#151412;border-block:1px solid var(--line)}
+    .menu-toolbar{
+      position:sticky;top:var(--header);z-index:50;
+      padding:12px 0;background:rgba(21,20,18,.93);backdrop-filter:blur(14px);
+      border-block:1px solid var(--line);
+    }
+    .menu-toolbar-inner{display:flex;gap:10px;align-items:center}
+    .category-scroller{
+      display:flex;gap:8px;overflow-x:auto;overscroll-behavior-inline:contain;scrollbar-width:none;
+      flex:1;padding:2px;
+    }
+    .category-scroller::-webkit-scrollbar{display:none}
+    .cat-btn{
+      flex:none;min-height:40px;padding:8px 14px;border-radius:999px;border:1px solid var(--line);
+      background:var(--surface);color:var(--muted);font-size:.76rem;font-weight:900;cursor:pointer;
+      white-space:nowrap;
+    }
+    .cat-btn.active{background:var(--yellow);color:var(--ink);border-color:var(--yellow)}
+    .search-wrap{position:relative;flex:0 0 min(280px,27vw)}
+    .search-wrap svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);width:17px;height:17px;color:var(--muted)}
+    .menu-search{
+      width:100%;height:42px;padding:8px 13px 8px 40px;border-radius:999px;border:1px solid var(--line);
+      background:var(--surface);color:var(--cream);outline:none;
+    }
+    .menu-search:focus{border-color:var(--yellow)}
+    .menu-search::placeholder{color:#7d7669}
+    .menu-content{padding-top:36px}
+    .menu-category-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:22px}
+    .menu-category-head h3{font-size:clamp(2rem,4.5vw,3.5rem)}
+    .menu-category-head p{margin:0;color:var(--muted);text-align:right}
+    .menu-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    .menu-item{
+      padding:18px;border:1px solid var(--line);border-radius:18px;background:var(--surface);
+      transition:border-color .15s ease,transform .15s ease;
+    }
+    .menu-item:hover{border-color:rgba(255,205,57,.42);transform:translateY(-2px)}
+    .item-main{display:flex;justify-content:space-between;gap:16px}
+    .item-name{margin:0;font-size:1rem;font-weight:900}
+    .item-desc{margin:5px 0 0;color:var(--muted);font-size:.82rem;line-height:1.45}
+    .item-price{margin:0;color:var(--yellow);font-weight:950;white-space:nowrap}
+    .new-pill{display:inline-block;margin-left:7px;padding:2px 6px;border-radius:999px;background:var(--yellow);color:var(--ink);font-size:.58rem;vertical-align:2px}
+    .size-prices{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-top:14px}
+    .size-prices.two{grid-template-columns:repeat(2,1fr)}
+    .size-price{padding:8px 6px;border-radius:11px;background:var(--surface-2);text-align:center}
+    .size-price small{display:block;color:var(--muted);font-size:.63rem}
+    .size-price strong{display:block;color:var(--yellow);font-size:.82rem}
+    .menu-note{margin:0 0 18px;padding:12px 14px;border-left:3px solid var(--yellow);background:rgba(255,205,57,.07);color:var(--muted)}
+    .empty-state{padding:36px;border:1px dashed var(--line);border-radius:18px;text-align:center;color:var(--muted)}
+
+    /* Gallery */
+    .gallery-grid{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:12px}
+    .gallery-card{position:relative;min-height:380px;border-radius:var(--radius);overflow:hidden}
+    .gallery-card img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+    .gallery-card:hover img{transform:scale(1.04)}
+    .gallery-card span{
+      position:absolute;left:14px;bottom:14px;padding:7px 11px;border-radius:999px;
+      background:rgba(17,16,16,.78);backdrop-filter:blur(8px);font-size:.72rem;font-weight:850
+    }
+
+    /* Story & visit */
+    .story-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:clamp(36px,7vw,82px);align-items:center}
+    .story-quote{font-size:clamp(2.55rem,5vw,4.6rem)}
+    .story-body{max-width:57ch;color:var(--muted)}
+    .story-photo{aspect-ratio:4/5;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+    .story-photo img{width:100%;height:100%;object-fit:cover}
+    .visit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .visit-card{padding:24px;border-radius:var(--radius);background:var(--surface);border:1px solid var(--line)}
+    .visit-card h3{font-size:1.45rem;letter-spacing:-.02em}
+    .visit-card p{margin:7px 0;color:var(--muted)}
+    .visit-card strong,.visit-card a.big{color:var(--cream)}
+    .visit-card a.big{display:block;font-size:1.35rem;font-weight:950;text-decoration:none}
+    .visit-card .btn{margin-top:14px}
+
+    footer{padding:48px 0 110px;border-top:1px solid var(--line);color:var(--muted);text-align:center}
+    footer img{height:58px;width:auto;margin:0 auto 18px}
+    footer p{margin:7px 0}
+    footer a:hover{color:var(--yellow)}
+
+    /* Mobile action bar */
+    .mobile-actions{
+      display:none;position:fixed;z-index:95;left:10px;right:10px;bottom:calc(10px + env(safe-area-inset-bottom));
+      padding:7px;border:1px solid var(--line);border-radius:18px;
+      background:rgba(17,16,16,.92);backdrop-filter:blur(18px);box-shadow:0 14px 44px rgba(0,0,0,.52)
+    }
+    .mobile-actions a{
+      flex:1;min-height:48px;display:flex;align-items:center;justify-content:center;gap:6px;
+      border-radius:12px;text-decoration:none;font-size:.72rem;font-weight:950;text-transform:uppercase
+    }
+    .mobile-actions a.primary{background:var(--yellow);color:var(--ink)}
+    .mobile-actions svg{width:17px;height:17px}
+
+    /* Modal */
+    .modal{
+      position:fixed;z-index:200;inset:0;padding:20px;display:none;place-items:center;background:rgba(0,0,0,.84)
+    }
+    .modal.open{display:grid}
+    .modal-card{position:relative;width:min(520px,100%);max-height:90vh;border-radius:22px;overflow:hidden;background:#000}
+    .modal video{width:100%;max-height:90vh;display:block}
+    .modal-close{
+      position:absolute;z-index:2;right:10px;top:10px;width:42px;height:42px;border-radius:50%;
+      border:1px solid rgba(255,255,255,.25);background:rgba(17,16,16,.75);cursor:pointer;font-size:1.3rem
+    }
+
+    @media (max-width:900px){
+      .desktop-nav{display:none}
+      .header-actions{margin-left:auto}
+      .hero-grid,.signature-grid,.story-grid{grid-template-columns:1fr}
+      .hero{padding-top:44px}
+      .hero-copy{text-align:center;margin-inline:auto}
+      .hero-actions,.hero-trust{justify-content:center}
+      .hero-media{width:min(470px,88vw);margin-inline:auto}
+      .signature-image,.story-photo{width:min(470px,92vw);margin-inline:auto}
+      .menu-grid{grid-template-columns:1fr}
+      .gallery-grid{grid-template-columns:1fr 1fr}
+      .gallery-card:first-child{grid-column:1/-1}
+      .gallery-card{min-height:330px}
+      .visit-grid{grid-template-columns:1fr}
+    }
+    @media (max-width:650px){
+      :root{--header:62px}
+      .shell{width:min(calc(100% - 24px),1180px)}
+      body{font-size:15px;padding-bottom:82px}
+      .site-header{height:var(--header)}
+      .brand img{height:36px}
+      .header-actions .header-order{display:none}
+      .hero{padding:36px 0 46px}
+      .hero h1{font-size:clamp(2.75rem,14vw,4.25rem)}
+      .hero-actions{display:grid;grid-template-columns:1fr 1fr}
+      .hero-actions .btn:first-child{grid-column:1/-1}
+      .hero-actions .btn{padding-inline:12px;font-size:.72rem}
+      .hero-trust{font-size:.77rem}
+      .hero-media{width:100%}
+      .hero-photo{aspect-ratio:5/6;border-radius:24px;transform:none}
+      .hero-chip{left:10px;bottom:12px}
+      .pulse-track{animation-duration:22s}
+      section.content{padding:66px 0}
+      .section-head{display:block}
+      .section-head p{margin-top:14px}
+      .signature-copy{text-align:left}
+      .signature-copy h2{font-size:2.8rem}
+      .menu-toolbar{top:var(--header);padding:9px 0}
+      .menu-toolbar-inner{display:block}
+      .search-wrap{width:100%;max-width:none;margin-bottom:8px}
+      .category-scroller{margin-inline:-2px}
+      .menu-category-head{display:block}
+      .menu-category-head p{text-align:left;margin-top:8px}
+      .menu-item{padding:15px}
+      .item-main{display:block}
+      .item-price{margin-top:10px}
+      .size-prices{grid-template-columns:repeat(4,minmax(62px,1fr));overflow-x:auto;padding-bottom:2px}
+      .size-prices.two{grid-template-columns:repeat(2,minmax(90px,1fr))}
+      .gallery-grid{grid-template-columns:1fr}
+      .gallery-card:first-child{grid-column:auto}
+      .gallery-card{min-height:360px}
+      .mobile-actions{display:flex}
+      footer{padding-bottom:24px}
+    }
+    @media (prefers-reduced-motion:reduce){
+      *{scroll-behavior:auto!important;animation:none!important;transition:none!important}
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Restaurant",
+    "name":"Piccolino Fast Food & Pizza",
+    "image":"assets/web/club-pizza.jpg",
+    "telephone":"+355692829555",
+    "servesCuisine":["Pizza","Fast Food","Burgers"],
+    "priceRange":"L",
+    "address":{
+      "@type":"PostalAddress",
+      "streetAddress":"Bulevardi Shën Gjergji, Pedonale",
+      "addressLocality":"Korçë",
+      "addressCountry":"AL"
+    },
+    "openingHoursSpecification":[{
+      "@type":"OpeningHoursSpecification",
+      "dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+      "opens":"08:00",
+      "closes":"24:00"
+    }],
+    "sameAs":["https://www.instagram.com/piccolino_pizza/"]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Kalo te përmbajtja</a>
+
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="#top" aria-label="Piccolino">
+        <img src="assets/web/logo-1000.png" alt="Piccolino Fast Food & Pizza" width="1000" height="311">
+      </a>
+      <nav class="desktop-nav" aria-label="Navigimi kryesor">
+        <a href="#signature" data-i18n="nav_special">Specialiteti</a>
+        <a href="#menu" data-i18n="nav_menu">Menuja</a>
+        <a href="#story" data-i18n="nav_story">Historia</a>
+        <a href="#visit" data-i18n="nav_visit">Na gjeni</a>
+      </nav>
+      <div class="header-actions">
+        <button class="lang" id="langBtn" type="button" aria-label="Change language">EN</button>
+        <a class="btn header-order" href="tel:+355692829555" data-i18n="order">Porosit</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <div class="shell hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">Fast Food & Pizza · Korçë</p>
+          <h1 class="display"><span data-i18n="hero_1">Një herë</span><br><span class="yellow">Piccolino.</span><br><span data-i18n="hero_2">Gjithmonë Piccolino.</span></h1>
+          <p class="hero-slogan serif" data-i18n="slogan">“Shija që të bën të kthehesh.”</p>
+          <p class="hero-lead" data-i18n="hero_lead">Pizza, burger dhe fast food të përgatitura në moment — në zemër të Pedonales së Korçës.</p>
+          <div class="hero-actions">
+            <a class="btn" href="#menu" data-i18n="see_menu">Shiko menunë</a>
+            <a class="btn secondary" href="tel:+355692829555" data-i18n="call">Telefono</a>
+            <a class="btn secondary" href="https://wa.me/355692829555" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+          <div class="hero-trust">
+            <span data-i18n="open_daily">Hapur çdo ditë 08:00–24:00</span>
+            <span data-i18n="fresh_daily">Brumë i freskët çdo ditë</span>
+            <span>Pedonale · Korçë</span>
+          </div>
+        </div>
+
+        <div class="hero-media">
+          <div class="hero-photo">
+            <img src="assets/web/club-pizza.jpg" alt="Club Pizza Piccolino" width="1080" height="1350" fetchpriority="high">
+          </div>
+          <span class="hero-chip" data-i18n="house_favorite">Club Pizza · e preferuara</span>
+          <button class="play-reel" id="openVideo" type="button" aria-label="Shiko videon"></button>
+        </div>
+      </div>
+    </section>
+
+    <div class="pulse-strip" aria-hidden="true">
+      <div class="pulse-track">
+        <span>Pizza</span><span>Club Pizza</span><span>Pizza Burger</span><span>Fresh Daily</span><span>Korçë</span>
+        <span>Pizza</span><span>Club Pizza</span><span>Pizza Burger</span><span>Fresh Daily</span><span>Korçë</span>
+      </div>
+    </div>
+
+    <section class="content" id="signature">
+      <div class="shell signature-grid">
+        <div class="signature-image">
+          <img src="assets/web/pizza-burger.jpg" alt="Pizza Burger Piccolino" loading="lazy" width="1080" height="1350">
+          <span class="new-badge" data-i18n="original">Origjinal<br>Piccolino</span>
+        </div>
+        <div class="signature-copy">
+          <p class="eyebrow" data-i18n="signature_label">Specialiteti ynë</p>
+          <h2 class="display">Pizza<br><span class="yellow">Burger.</span></h2>
+          <p class="intro" data-i18n="signature_copy">Gjysmë pizza, gjysmë burger, zero kompromis. Brumë pice i pjekur në moment, dy qofte, kroketa djathi, domate dhe turshi.</p>
+          <ul class="feature-list">
+            <li data-i18n="sig_1">Përgatitet vetëm pasi e porosit</li>
+            <li data-i18n="sig_2">Dy qofte + kroketa djathi</li>
+            <li data-i18n="sig_3">Shërbehet me patate · 500 L</li>
+          </ul>
+          <a class="btn" href="tel:+355692829555" data-i18n="try_now">Provoje tani</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="content menu-section" id="menu">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow">Piccolino · Korçë</p>
+            <h2 class="display" data-i18n="menu_title">Menuja <span class="yellow">jonë.</span></h2>
+          </div>
+          <p data-i18n="menu_intro">Zgjidh kategorinë, kërko produktin dhe telefono direkt. Çmimet janë në lekë.</p>
+        </div>
+      </div>
+
+      <div class="menu-toolbar">
+        <div class="shell menu-toolbar-inner">
+          <div class="search-wrap">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="m16.5 16.5 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+            <input class="menu-search" id="menuSearch" type="search" placeholder="Kërko në menu…" autocomplete="off">
+          </div>
+          <div class="category-scroller" id="categoryNav" aria-label="Kategoritë e menusë"></div>
+        </div>
+      </div>
+
+      <div class="shell menu-content">
+        <div id="menuOutput"></div>
+      </div>
+    </section>
+
+    <section class="content" id="gallery">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow" data-i18n="kitchen_label">Direkt nga kuzhina</p>
+            <h2 class="display" data-i18n="gallery_title">Shiko <span class="yellow">shijen.</span></h2>
+          </div>
+          <p data-i18n="gallery_copy">Pa foto stok. Këto janë produktet dhe kuzhina reale e Piccolino-s.</p>
+        </div>
+        <div class="gallery-grid">
+          <a class="gallery-card" href="https://www.instagram.com/piccolino_pizza/" target="_blank" rel="noopener">
+            <img src="assets/ig/club-pizza.jpg" alt="Ushqim i përgatitur nga Piccolino" loading="lazy">
+            <span>@piccolino_pizza</span>
+          </a>
+          <a class="gallery-card" href="https://www.instagram.com/piccolino_pizza/" target="_blank" rel="noopener">
+            <img src="assets/ig/pizza-burger.jpg" alt="Produkt nga Piccolino" loading="lazy">
+            <span data-i18n="fresh_kitchen">Nga kuzhina</span>
+          </a>
+          <a class="gallery-card" href="https://www.instagram.com/piccolino_pizza/" target="_blank" rel="noopener">
+            <img src="assets/web/brand-bag.jpg" alt="Piccolino takeaway" loading="lazy">
+            <span data-i18n="takeaway">Për me vete</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="content" id="story">
+      <div class="shell story-grid">
+        <div>
+          <p class="eyebrow" data-i18n="story_label">Historia jonë</p>
+          <h2 class="display story-quote"><span data-i18n="story_1">Kuzhinë e vogël.</span><br><span class="yellow" data-i18n="story_2">Zemër e madhe.</span></h2>
+          <p class="story-body" data-i18n="story_body">Piccolino do të thotë “i vogli”. Një kuzhinë e vogël në Pedonalen e Korçës që fokusohet te gjërat që kanë rëndësi: brumë i freskët, përbërës të zgjedhur dhe çdo porosi e përgatitur me vëmendje.</p>
+          <p class="serif">— Piccolino, Bulevardi Shën Gjergji</p>
+        </div>
+        <div class="story-photo">
+          <img src="assets/web/brand-bag.jpg" alt="Piccolino Fast Food & Pizza" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <section class="content" id="visit">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <p class="eyebrow" data-i18n="come_hungry">Eja i uritur</p>
+            <h2 class="display" data-i18n="find_us">Na <span class="yellow">gjeni.</span></h2>
+          </div>
+        </div>
+        <div class="visit-grid">
+          <article class="visit-card">
+            <h3 class="display" data-i18n="location">Vendndodhja</h3>
+            <p><strong>Piccolino Fast Food & Pizza</strong></p>
+            <p>Bulevardi Shën Gjergji</p>
+            <p>Pedonale, Korçë, Albania</p>
+            <a class="btn secondary" href="https://www.google.com/maps/search/?api=1&query=Piccolino+Pizza+Bulevardi+Shen+Gjergji+Korce" target="_blank" rel="noopener" data-i18n="maps">Google Maps</a>
+          </article>
+          <article class="visit-card">
+            <h3 class="display" data-i18n="hours">Orari</h3>
+            <p><strong data-i18n="mon_sun">E hënë – E diel</strong></p>
+            <p>08:00 – 24:00</p>
+            <p data-i18n="open_everyday">Hapur çdo ditë.</p>
+          </article>
+          <article class="visit-card">
+            <h3 class="display" data-i18n="order_title">Porosit</h3>
+            <a class="big" href="tel:+355692829555">069 282 9555</a>
+            <a class="big" href="tel:+35582257770">082 257 770</a>
+            <p data-i18n="order_note">Telefono ose shkruaj në WhatsApp për porosi.</p>
+            <a class="btn" href="https://wa.me/355692829555" target="_blank" rel="noopener">WhatsApp</a>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell">
+      <img src="assets/web/logo-1000.png" alt="Piccolino" width="1000" height="311" loading="lazy">
+      <p class="serif">“Një herë Piccolino, gjithmonë Piccolino.”</p>
+      <p>Bulevardi Shën Gjergji, Pedonale, Korçë · <a href="tel:+355692829555">069 282 9555</a></p>
+      <p>© Piccolino Fast Food & Pizza</p>
+    </div>
+  </footer>
+
+  <nav class="mobile-actions" aria-label="Veprime të shpejta">
+    <a href="tel:+355692829555">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 3h3l1.5 4-2 1.5a15 15 0 0 0 6 6l1.5-2 4 1.5v3a4 4 0 0 1-4 4C9.3 21 3 14.7 3 7a4 4 0 0 1 4-4Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+      <span data-i18n="call">Telefono</span>
+    </a>
+    <a href="https://wa.me/355692829555" target="_blank" rel="noopener">WhatsApp</a>
+    <a class="primary" href="#menu">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 6h14M5 12h14M5 18h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <span data-i18n="nav_menu">Menuja</span>
+    </a>
+  </nav>
+
+  <div class="modal" id="videoModal" role="dialog" aria-modal="true" aria-label="Video Piccolino">
+    <div class="modal-card">
+      <button class="modal-close" id="closeVideo" type="button" aria-label="Mbyll videon">×</button>
+      <video id="reelVideo" controls playsinline preload="none" poster="assets/web/club-slow-poster.jpg">
+        <source data-src="assets/video/club-pizza.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+
+  <script>
+    const MENU = [
+      {id:"pizza",sq:"Pizza",en:"Pizza",tagSq:"Zgjidh shijen tënde",tagEn:"Choose your taste",sizes:["20 cm","28 cm","33 cm","40 cm"],items:[
+        ["Margarita","salcë domate, guda","tomato sauce, gouda",[250,350,500,700]],
+        ["Ham Classic","salcë domate, guda, proshutë","tomato sauce, gouda, ham",[300,450,600,1000]],
+        ["Bacon Classic","salcë domate, guda, pancetë","tomato sauce, gouda, bacon",[300,450,600,1000]],
+        ["Gustoza","salcë domate, guda, pancetë, proshutë, speca","tomato sauce, gouda, bacon, ham, peppers",[300,500,700,1100]],
+        ["Napoletana","salcë domate, mozzarella, borzilok i freskët","tomato sauce, mozzarella, fresh basil",[300,400,550,800]],
+        ["Capricioza","salcë domate, guda, proshutë, kërpudha, speca, ullinj","tomato sauce, gouda, ham, mushrooms, peppers, olives",[300,500,700,1200]],
+        ["Speciale","salcë domate, guda, proshutë, pancetë, kërpudha, peperoni, speca","tomato sauce, gouda, ham, bacon, mushrooms, pepperoni, peppers",[300,500,700,1200]],
+        ["Mexicana","salcë domate, guda, peperoni, milanez, kërpudha, speca, ullinj, domate, misër","tomato sauce, gouda, pepperoni, salami, mushrooms, peppers, olives, tomato, corn",[300,500,700,1200]],
+        ["Crudo","salcë domate, guda, proshutë, pancetë, milanez, ullinj, speca","tomato sauce, gouda, prosciutto, bacon, salami, olives, peppers",[300,500,700,1200]],
+        ["Arabica","djathë, guda, mozzarella, hurma arabike, mjaltë, gorgonzola","cheese, gouda, mozzarella, dates, honey, gorgonzola",[300,500,700,1200]],
+        ["Vegeteriane","salcë domate, guda, kërpudha, domate, ullinj, qepë","tomato sauce, gouda, mushrooms, tomato, olives, onion",[300,450,650,1100]],
+        ["4 Djathrat","salcë domate, guda, mozzarella, gorgonzola, djathë feta","tomato sauce, gouda, mozzarella, gorgonzola, feta",[300,500,700,1200]],
+        ["Rucola","salcë domate, guda, pomodorini, rucola, qafë derri i tymosur, parmixhano, balsam","tomato sauce, gouda, cherry tomatoes, arugula, smoked pork neck, parmesan, balsamic",[350,600,900,1300]],
+        ["Mushroom Classic","salcë domate, guda, pancetë, kërpudha, djathë feta","tomato sauce, gouda, bacon, mushrooms, feta",[300,500,700,1200]],
+        ["Light","salcë domate, guda, kërpudha, fileto pule","tomato sauce, gouda, mushrooms, chicken fillet",[300,500,700,1200]],
+        ["Cezar","salcë cezar, guda, pancetë, fileto pule","caesar sauce, gouda, bacon, chicken fillet",[300,500,700,1200]],
+        ["Piccolino","salcë mustardë, guda, domate, fileto pule","mustard sauce, gouda, tomato, chicken fillet",[300,500,700,1200]],
+        ["Nuggets","salcë domate, guda, patate, nuggets","tomato sauce, gouda, fries, nuggets",[300,500,700,1200]],
+        ["Potato Bacon","salcë domate, guda, pancetë, domate, patate","tomato sauce, gouda, bacon, tomato, fries",[300,500,700,1200]],
+        ["Diavola","salcë domate, guda, peperoni","tomato sauce, gouda, pepperoni",[300,500,700,1200]],
+        ["Hawai","salcë domate, guda, ananas, proshutë","tomato sauce, gouda, pineapple, ham",[300,500,700,1200]],
+        ["Carbonara","pana, guda, pancetë, kërpudha","cream, gouda, bacon, mushrooms",[300,500,700,1200]],
+        ["Tono","salcë domate, guda, ullinj, tono","tomato sauce, gouda, olives, tuna",[300,500,700,1200]],
+        ["Tartuf","kërpudhë, tartuf, mozzarella/guda","mushrooms, truffle, mozzarella/gouda",[300,500,700,1200]]
+      ]},
+      {id:"dolce",sq:"Dolce Vitta",en:"Dolce Vitta",tagSq:"Pizza të ëmbla",tagEn:"Sweet pizzas",sizes:["20 cm","28 cm"],noteSq:"Përgatisni picën sipas dëshirës: gjysmë të kripur, gjysmë të ëmbël!",noteEn:"Make your pizza your way — half savory, half sweet!",items:[
+        ["Pizza Oreo","nutella, luleshtrydhe, banane, oreo","nutella, strawberries, banana, oreo",[300,500]],
+        ["Pizza Kinder","nutella, luleshtrydhe, banane, kinder bueno","nutella, strawberries, banana, kinder bueno",[350,600]],
+        ["Calzone Nutella","nutella, banane, M&M","nutella, banana, M&M","500"]
+      ]},
+      {id:"burgers",sq:"Burgers",en:"Burgers",tagSq:"100% viç",tagEn:"100% beef",items:[
+        ["Classic Burger","salcë, sallatë jeshile, domate, qofte, guda, patate","sauce, lettuce, tomato, patty, gouda, fries","250"],
+        ["Cheese Burger","salcë, kastravec turshi, pancetë, qofte, guda, patate","sauce, pickles, bacon, patty, gouda, fries","300"],
+        ["Smash Burger","mish i freskët 100% viç, iceberg, domate, qepë","fresh 100% beef, iceberg, tomato, onion","400",true],
+        ["Chicken Burger","salcë, sallatë jeshile, domate, guda, fileto pule, patate","sauce, lettuce, tomato, gouda, chicken fillet, fries","300"],
+        ["Chicken Finger Burger","salcë, sallatë jeshile, domate, guda, chicken fingers, patate","sauce, lettuce, tomato, gouda, chicken fingers, fries","350"],
+        ["Double Burger","salcë, sallatë jeshile, guda, 2 qofte, pancetë, domate, kastravec turshi, patate","sauce, lettuce, gouda, 2 patties, bacon, tomato, pickles, fries","400"],
+        ["Bacon Burger","salcë, rukola, guda, 2 qofte, pancetë, vezë, patate","sauce, arugula, gouda, 2 patties, bacon, egg, fries","450"],
+        ["Hangover Burger","salcë, sallatë jeshile, guda, 3 qofte, pancetë, domate, qepë, patate","sauce, lettuce, gouda, 3 patties, bacon, tomato, onion, fries","500"],
+        ["Pizza Burger","brumë pize, 2 qofte, kroketa djathi, domate, kastravec turshi, patate","pizza dough, 2 patties, cheese croquettes, tomato, pickles, fries","500",true],
+        ["Onion Burger","salcë, sallatë jeshile, 2 qofte, guda, turshi, onion rings, patate","sauce, lettuce, 2 patties, gouda, pickles, onion rings, fries","500",true]
+      ]},
+      {id:"meats",sq:"Mish",en:"Meats",tagSq:"Cilësi dhe shije",tagEn:"Quality and taste",items:[
+        ["Chicken Wings","krahë pule të marinuara & të pjekura — 0.5 kg / 1 kg","marinated & roasted chicken wings — 0.5 kg / 1 kg","600 / 1200"],
+        ["Chicken Fingers","mini kotoleta pule, pite, patate, salcë, domate, kastravec","mini chicken cutlets, pita, fries, sauce, tomato, cucumber","500"],
+        ["Shishqebap Pule","2 shishqebap pule, pite, patate, salcë, domate, kastravec","2 chicken skewers, pita, fries, sauce, tomato, cucumber","500"],
+        ["Piccolino Box","krahë pule, chicken fingers, spring rolls, onion rings, kroketa djathi, brumë me salçiçe","wings, chicken fingers, spring rolls, onion rings, cheese croquettes, sausage rolls","500 / 1000"]
+      ]},
+      {id:"sandwich",sq:"Sandwich",en:"Sandwich",tagSq:"Të freskëta dhe të shijshme",tagEn:"Fresh and tasty",items:[
+        ["Sandwich me brumë pice","salcë, sallatë jeshile, proshutë, guda, domate","pizza-dough bread, sauce, lettuce, ham, gouda, tomato","200"],
+        ["Vegetarian","djathë feta, domate, kastravec, ullinj, vaj, rigon","feta, tomato, cucumber, olives, oil, oregano","200"],
+        ["Chicken","salcë, sallatë jeshile, domate, guda, chicken","sauce, lettuce, tomato, gouda, chicken","200"],
+        ["Tono","salcë, sallatë jeshile, tono, domate, misër","sauce, lettuce, tuna, tomato, corn","200"],
+        ["Bacon Classic","salcë, domate, pancetë, guda, vezë","sauce, tomato, bacon, gouda, egg","250"],
+        ["Hungarez","salcë, sallam hungarez, domate, guda","sauce, hungarian salami, tomato, gouda","200"],
+        ["Sandwich Pesto","bagetë, pesto, pomodorini, mozzarella, rucola, proshutë e tymosur","baguette, pesto, cherry tomatoes, mozzarella, arugula, smoked ham","300"],
+        ["Tost","majonezë, guda, proshutë","toast — mayo, gouda, ham","100"],
+        ["Tost me fileto pule","majonezë, guda, fileto pule, patate","toast — mayo, gouda, chicken fillet, fries","150"]
+      ]},
+      {id:"pita",sq:"Pita",en:"Pita",tagSq:"Të freskëta dhe të shijshme",tagEn:"Fresh and tasty",items:[
+        ["Pita Piccolino","salcë, fileto pule, patate, domate","sauce, chicken fillet, fries, tomato","300"],
+        ["Pita Arabe Chicken","salcë guda, fileto pule, patate, domate","gouda sauce, chicken fillet, fries, tomato","300"],
+        ["Pita Arabe Llukanik","salcë, llukanik, patate, domate","sauce, sausage, fries, tomato","300"],
+        ["Pita Pita","3 pite, fileto pule, domate, kastravec, guda — me patate dhe salcë","3 pitas, chicken fillet, tomato, cucumber, gouda — with fries and sauce","400"],
+        ["Quesadilla","2 pite, fileto pule, guda, kërpudha, patate, salcë","2 pitas, chicken fillet, gouda, mushrooms, fries, sauce","300"],
+        ["Souvlaki","shishqebap / fileto pule, sallatë jeshile, domate, kastravec, xaxik, patate","chicken skewer or fillet, lettuce, tomato, cucumber, tzatziki, fries","300"]
+      ]},
+      {id:"calzone",sq:"Calzone",en:"Calzone",tagSq:"Brumë i freskët",tagEn:"Fresh dough",noteSq:"Porositni calzonen me produktet që dëshironi.",noteEn:"Order your calzone with the fillings you love.",items:[
+        ["Calzone Mozzarella","rukola, qafë derri e tymosur, mozzarella, pomodorini — 20 cm ose 28 cm","arugula, smoked pork neck, mozzarella, cherry tomatoes — 20 cm or 28 cm","500"]
+      ]},
+      {id:"penerli",sq:"Penerli",en:"Penerli",tagSq:"Të mbushura me përbërës cilësorë",tagEn:"Quality-filled",items:[
+        ["Penerli Classic","guda & pancetë / me vezë","gouda & bacon / with egg","250 / 300"],
+        ["Penerli Vegetariane","guda, kërpudha, speca, ullinj, domate","gouda, mushrooms, peppers, olives, tomato","300"],
+        ["Penerli Proshutë","guda, proshutë, kërpudha, speca, ullinj","gouda, ham, mushrooms, peppers, olives","300"],
+        ["Penerli 4 Djathrat","guda, mozzarella, djathë feta, gorgonzola","gouda, mozzarella, feta, gorgonzola","300"],
+        ["Penerli Milanez","guda, milanez, djathë feta","gouda, milano salami, feta","300"]
+      ]},
+      {id:"bruschetti",sq:"Bruschetti",en:"Bruschetti",tagSq:"Shija që të kthen",tagEn:"The taste that brings you back",items:[
+        ["Bruschetti me hudhër","hudhër, guda","garlic, gouda","100"],
+        ["Bruschetti me hudhër dhe guda","hudhër, guda, djathë feta, pancetë dhe domate","garlic, gouda, feta, bacon and tomato","150"],
+        ["Bruschetti e madhe","hudhër, guda, djathë feta, pancetë dhe domate","large — garlic, gouda, feta, bacon and tomato","200"]
+      ]},
+      {id:"club",sq:"Club Piccolino",en:"Club Piccolino",tagSq:"Të mbushura me cilësi",tagEn:"Stuffed with quality",items:[
+        ["Club Sandwich me proshutë","guda, proshutë, pancetë — me patate & salcë","gouda, ham, bacon — with fries & sauce","300"],
+        ["Club Sandwich me fileto pule","guda, fileto pule — me patate & salcë","gouda, chicken fillet — with fries & sauce","350"],
+        ["Club Sandwich me proshutë gjel deti","guda, proshutë gjel deti — me patate & salcë","gouda, turkey ham — with fries & sauce","350"],
+        ["Club Pizza","guda, proshutë, pancetë — me patate & salcë","gouda, ham, bacon — with fries & sauce","500"],
+        ["Burrito","xaxiki, patate, marule, domate, qepë, mish derri ose pule","tzatziki, fries, lettuce, tomato, onion, pork or chicken","400"]
+      ]},
+      {id:"tacos",sq:"Tacos",en:"Tacos",tagSq:"Të freskëta dhe pikante",tagEn:"Fresh and spicy",items:[
+        ["Tacos Pule","guacamole, iceberg, fileto pule, sweet chilli, mix","chicken — guacamole, iceberg, chicken fillet, sweet chilli, mix","500"],
+        ["Tacos Viçi","mish i grirë viçi, iceberg, sos","beef — minced beef, iceberg, sauce","700"]
+      ]},
+      {id:"sallata",sq:"Sallata",en:"Salads",tagSq:"Të freskëta dhe të shëndetshme",tagEn:"Fresh and healthy",items:[
+        ["Green Salad","sallatë jeshile, kastravec, qepë","lettuce, cucumber, onion","200"],
+        ["Cezar","sallatë jeshile, fileto pule, bukë e thekur, misër, guda, salcë","lettuce, chicken fillet, croutons, corn, gouda, sauce","300"],
+        ["Tono","sallatë jeshile, domate, ton, kastravec, misër, qepë, salcë","lettuce, tomato, tuna, cucumber, corn, onion, sauce","300"],
+        ["Chef","sallatë jeshile, domate, kastravec, karrota, proshutë, guda, vezë, salcë","lettuce, tomato, cucumber, carrots, ham, gouda, egg, sauce","350"],
+        ["Rucola","rucola, pomodorini, arra, mollë, mjaltë, balsam","arugula, cherry tomatoes, walnuts, apple, honey, balsamic","350"],
+        ["Fshati","domate, kastravec, speca, ullinj, qepë, djathë feta","village salad — tomato, cucumber, peppers, olives, onion, feta","300"]
+      ]},
+      {id:"pasta",sq:"Pasta",en:"Pasta",tagSq:"Të freskëta dhe të shijshme",tagEn:"Fresh and tasty",items:[
+        ["Linguine me salcë të kuqe","","linguine with red sauce","400"],
+        ["Linguine pana, kërpudhë","","linguine with cream & mushrooms","400"],
+        ["Linguine tartuf","","truffle linguine","400"]
+      ]},
+      {id:"sides",sq:"Side Dish",en:"Side Dish",tagSq:"Për anash",tagEn:"On the side",items:[
+        ["Patate të skuqura","","french fries","200"],
+        ["Racion kroketa djathi","","portion of cheese croquettes","400"],
+        ["Racion onion rings","","portion of onion rings","250"]
+      ]}
+    ];
+
+    const I18N = {
+      sq:{
+        nav_special:"Specialiteti",nav_menu:"Menuja",nav_story:"Historia",nav_visit:"Na gjeni",order:"Porosit",
+        hero_1:"Një herë",hero_2:"Gjithmonë Piccolino.",slogan:"“Shija që të bën të kthehesh.”",
+        hero_lead:"Pizza, burger dhe fast food të përgatitura në moment — në zemër të Pedonales së Korçës.",
+        see_menu:"Shiko menunë",call:"Telefono",open_daily:"Hapur çdo ditë 08:00–24:00",fresh_daily:"Brumë i freskët çdo ditë",
+        house_favorite:"Club Pizza · e preferuara",original:"Origjinal<br>Piccolino",signature_label:"Specialiteti ynë",
+        signature_copy:"Gjysmë pizza, gjysmë burger, zero kompromis. Brumë pice i pjekur në moment, dy qofte, kroketa djathi, domate dhe turshi.",
+        sig_1:"Përgatitet vetëm pasi e porosit",sig_2:"Dy qofte + kroketa djathi",sig_3:"Shërbehet me patate · 500 L",try_now:"Provoje tani",
+        menu_title:'Menuja <span class="yellow">jonë.</span>',menu_intro:"Zgjidh kategorinë, kërko produktin dhe telefono direkt. Çmimet janë në lekë.",
+        kitchen_label:"Direkt nga kuzhina",gallery_title:'Shiko <span class="yellow">shijen.</span>',gallery_copy:"Pa foto stok. Këto janë produktet dhe kuzhina reale e Piccolino-s.",
+        fresh_kitchen:"Nga kuzhina",takeaway:"Për me vete",story_label:"Historia jonë",story_1:"Kuzhinë e vogël.",story_2:"Zemër e madhe.",
+        story_body:"Piccolino do të thotë “i vogli”. Një kuzhinë e vogël në Pedonalen e Korçës që fokusohet te gjërat që kanë rëndësi: brumë i freskët, përbërës të zgjedhur dhe çdo porosi e përgatitur me vëmendje.",
+        come_hungry:"Eja i uritur",find_us:'Na <span class="yellow">gjeni.</span>',location:"Vendndodhja",maps:"Google Maps",hours:"Orari",
+        mon_sun:"E hënë – E diel",open_everyday:"Hapur çdo ditë.",order_title:"Porosit",order_note:"Telefono ose shkruaj në WhatsApp për porosi.",
+        search:"Kërko në menu…",new:"E RE",prices:"Çmimet në lekë",no_results:"Nuk u gjet asnjë produkt."
+      },
+      en:{
+        nav_special:"Signature",nav_menu:"Menu",nav_story:"Story",nav_visit:"Find us",order:"Order",
+        hero_1:"Once",hero_2:"Always Piccolino.",slogan:"“The taste that brings you back.”",
+        hero_lead:"Pizza, burgers and honest fast food made fresh when you order — in the heart of Korçë’s pedestrian street.",
+        see_menu:"View menu",call:"Call",open_daily:"Open daily 08:00–24:00",fresh_daily:"Fresh dough every day",
+        house_favorite:"Club Pizza · house favorite",original:"Piccolino<br>Original",signature_label:"Our signature",
+        signature_copy:"Half pizza, half burger, zero compromise. Fresh pizza dough, two beef patties, cheese croquettes, tomato and pickles.",
+        sig_1:"Made only after you order",sig_2:"Two patties + cheese croquettes",sig_3:"Served with fries · 500 L",try_now:"Try it now",
+        menu_title:'Our <span class="yellow">menu.</span>',menu_intro:"Choose a category, search an item and call directly. Prices are in Albanian lek.",
+        kitchen_label:"Fresh from the kitchen",gallery_title:'See the <span class="yellow">flavor.</span>',gallery_copy:"No stock photos. This is the real Piccolino food and kitchen.",
+        fresh_kitchen:"From the kitchen",takeaway:"To go",story_label:"Our story",story_1:"Small kitchen.",story_2:"Big heart.",
+        story_body:"Piccolino means “the little one.” A small kitchen on Korçë’s pedestrian street focused on what matters: fresh dough, carefully chosen ingredients and every order made with attention.",
+        come_hungry:"Come hungry",find_us:'Find <span class="yellow">us.</span>',location:"Location",maps:"Google Maps",hours:"Hours",
+        mon_sun:"Monday – Sunday",open_everyday:"Open every day.",order_title:"Order",order_note:"Call or message us on WhatsApp to order.",
+        search:"Search the menu…",new:"NEW",prices:"Prices in lek",no_results:"No menu items found."
+      }
+    };
+
+    let lang = localStorage.getItem("piccolino-lang") || "sq";
+    let activeCategory = "pizza";
+    let query = "";
+
+    const esc = value => String(value ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
+    const text = (key) => I18N[lang][key];
+
+    function applyLanguage(){
+      document.documentElement.lang = lang;
+      document.getElementById("langBtn").textContent = lang === "sq" ? "EN" : "SQ";
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const value = text(el.dataset.i18n);
+        if (value !== undefined) el.innerHTML = value;
+      });
+      document.getElementById("menuSearch").placeholder = text("search");
+      renderCategories();
+      renderMenu();
+    }
+
+    function renderCategories(){
+      const nav = document.getElementById("categoryNav");
+      nav.innerHTML = MENU.map(cat => `
+        <button class="cat-btn ${cat.id === activeCategory ? "active" : ""}" type="button" data-cat="${cat.id}">
+          ${esc(lang === "sq" ? cat.sq : cat.en)}
+        </button>`).join("");
+    }
+
+    function itemMatches(cat,item){
+      const hay = [cat.sq,cat.en,item[0],item[1],item[2]].join(" ").toLocaleLowerCase();
+      return hay.includes(query.toLocaleLowerCase());
+    }
+
+    function renderItem(cat,item){
+      const [name,sqDesc,enDesc,price,isNew] = item;
+      const desc = lang === "sq" ? sqDesc : enDesc;
+      const badge = isNew ? `<span class="new-pill">${text("new")}</span>` : "";
+      if (Array.isArray(price)){
+        const sizes = cat.sizes || [];
+        return `<article class="menu-item">
+          <div class="item-main">
+            <div><h4 class="item-name">${esc(name)}${badge}</h4>${desc ? `<p class="item-desc">${esc(desc)}</p>` : ""}</div>
+          </div>
+          <div class="size-prices ${sizes.length === 2 ? "two" : ""}">
+            ${sizes.map((size,i)=>`<div class="size-price"><small>${esc(size)}</small><strong>${price[i] ?? "—"} L</strong></div>`).join("")}
+          </div>
+        </article>`;
+      }
+      return `<article class="menu-item">
+        <div class="item-main">
+          <div><h4 class="item-name">${esc(name)}${badge}</h4>${desc ? `<p class="item-desc">${esc(desc)}</p>` : ""}</div>
+          <p class="item-price">${esc(price)} L</p>
+        </div>
+      </article>`;
+    }
+
+    function renderMenu(){
+      const output = document.getElementById("menuOutput");
+      let categories;
+
+      if(query.trim()){
+        categories = MENU.map(cat => ({...cat,items:cat.items.filter(item=>itemMatches(cat,item))})).filter(cat=>cat.items.length);
+      } else {
+        categories = MENU.filter(cat=>cat.id === activeCategory);
+      }
+
+      if(!categories.length){
+        output.innerHTML = `<div class="empty-state">${text("no_results")}</div>`;
+        return;
+      }
+
+      output.innerHTML = categories.map(cat => {
+        const name = lang === "sq" ? cat.sq : cat.en;
+        const tag = lang === "sq" ? cat.tagSq : cat.tagEn;
+        const note = lang === "sq" ? cat.noteSq : cat.noteEn;
+        return `<section aria-labelledby="cat-${cat.id}">
+          <div class="menu-category-head">
+            <h3 class="display" id="cat-${cat.id}">${esc(name)}</h3>
+            <p>${esc(tag || "")}</p>
+          </div>
+          ${note ? `<p class="menu-note">${esc(note)}</p>` : ""}
+          <div class="menu-grid">${cat.items.map(item=>renderItem(cat,item)).join("")}</div>
+          <p class="muted" style="text-align:right;margin:14px 0 36px;font-size:.75rem">${text("prices")}</p>
+        </section>`;
+      }).join("");
+    }
+
+    document.getElementById("langBtn").addEventListener("click",()=>{
+      lang = lang === "sq" ? "en" : "sq";
+      localStorage.setItem("piccolino-lang",lang);
+      applyLanguage();
+    });
+
+    document.getElementById("categoryNav").addEventListener("click",event=>{
+      const button = event.target.closest("[data-cat]");
+      if(!button) return;
+      activeCategory = button.dataset.cat;
+      query = "";
+      document.getElementById("menuSearch").value = "";
+      renderCategories();
+      renderMenu();
+      document.getElementById("menuOutput").scrollIntoView({behavior:"smooth",block:"start"});
+    });
+
+    document.getElementById("menuSearch").addEventListener("input",event=>{
+      query = event.target.value.trim();
+      renderMenu();
+    });
+
+    const modal = document.getElementById("videoModal");
+    const video = document.getElementById("reelVideo");
+    function openVideo(){
+      const source = video.querySelector("source");
+      if(!source.src){ source.src = source.dataset.src; video.load(); }
+      modal.classList.add("open");
+      document.body.classList.add("modal-open");
+      video.play().catch(()=>{});
+    }
+    function closeVideo(){
+      modal.classList.remove("open");
+      document.body.classList.remove("modal-open");
+      video.pause();
+    }
+    document.getElementById("openVideo").addEventListener("click",openVideo);
+    document.getElementById("closeVideo").addEventListener("click",closeVideo);
+    modal.addEventListener("click",e=>{if(e.target===modal) closeVideo()});
+    document.addEventListener("keydown",e=>{if(e.key==="Escape") closeVideo()});
+
+    applyLanguage();
+  </script>
+</body>
+</html>
