@@ -289,7 +289,8 @@
     .hero .kicker::before{ display:none; }
     .hero .cta-row{ justify-content:center; }
     .hero .sub{ margin-inline:auto; }
-    .hero-photo{ order:-1; max-width:min(72vw, 360px); margin:0 auto; }
+    .hero-photo{ order:-1; max-width:min(88vw, 430px); margin:0 auto; }
+    .hero-photo .frame{ aspect-ratio:9/16; }  /* full reel frame on mobile — nothing cropped, food visible to the end */
     .feature{ grid-template-columns:1fr; }
     .feature .photo{ max-width:420px; margin:0 auto; }
     .story .grid{ grid-template-columns:1fr; }
@@ -332,7 +333,7 @@
     </div>
   </div>
   <div class="hero-photo rv">
-    <div class="frame"><video data-vid="club-slow.mp4" data-rate="0.35" poster="{{IMG:club-slow-poster.jpg}}" autoplay muted loop playsinline aria-label="Club pizza served, in slow motion"></video></div>
+    <div class="frame"><video data-vid="club-pizza.mp4" poster="{{IMG:club-pizza.jpg}}" autoplay muted loop playsinline aria-label="Club pizza video from the Piccolino kitchen"></video></div>
     <span class="chip" data-i18n="chip_hero">Club Pizza — house favorite</span>
   </div>
 </section>
@@ -683,7 +684,7 @@
 
   // =============== videos: single copy of each clip, assigned at runtime ===============
   const VIDS = {
-    "club-slow.mp4": "{{VID:club-slow.mp4}}",
+    "club-pizza.mp4": "{{VID:club-pizza.mp4}}",
     "pizza-preview.mp4": "{{VID:pizza-preview.mp4}}",
     "pizza-burger-preview.mp4": "{{VID:pizza-burger-preview.mp4}}",
     "quality-preview.mp4": "{{VID:quality-preview.mp4}}"
@@ -747,6 +748,6 @@
   }
   document.getElementById("langBtn").addEventListener("click", () => setLang(lang === "en" ? "sq" : "en"));
 
-  renderMenu();
+  setLang("sq");   // Shqip is the default; ENGLISH is the toggle
   route();
 </script>
