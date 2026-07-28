@@ -5,7 +5,7 @@
 <canvas id="cv"></canvas>
 <script>
 const JOBS = [
-  { src:"/assets/video/club-pizza.mp4", out:"club-slow", start:5.6, dur:2.6, posterAt:7.6 }
+  { src:"/assets/video/club-pizza.mp4", out:"club-cut", start:0, dur:7.6 }
 ];
 const status = document.getElementById("status");
 window.__enc = {};
@@ -38,7 +38,8 @@ async function encodeOne(job, mime){
   const chunks = [];
   rec.ondataavailable = e => { if (e.data.size) chunks.push(e.data); };
   const done = new Promise(res => rec.onstop = res);
-  await v.play(); rec.start(250);
+  const playing = new Promise(r => v.addEventListener("playing", r, { once:true }));
+  await v.play(); await playing; rec.start(250);
   await new Promise(res => { const t0 = v.currentTime; const iv = setInterval(() => { if (v.currentTime - t0 >= job.dur || v.ended || v.paused) { clearInterval(iv); res(); } }, 200); });
   rec.stop(); v.pause();
   await done;
