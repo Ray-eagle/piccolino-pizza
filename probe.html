@@ -5,9 +5,9 @@
 <canvas id="cv"></canvas>
 <script>
 (async()=>{
-  const times = [1, 4, 7, 10, 13, 16, 19, 22];
+  const times = [0.5, 1.5, 2.5, 3.5, 5, 6.5, 8, 9];
   const v = document.createElement("video");
-  v.src = "/assets/video/pizza-new.mp4"; v.muted = true;
+  v.src = "/assets/video/club-cut.mp4"; v.muted = true;
   await new Promise((res,rej)=>{ v.onloadedmetadata=res; v.onerror=()=>rej(new Error("load")); });
   const fw = 180, fh = Math.round(fw * v.videoHeight / v.videoWidth);
   const cv = document.getElementById("cv");
