@@ -1,0 +1,27 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>probe</title></head>
+<body style="background:#111;margin:0">
+<div id="status" style="color:#eee;font-family:monospace">loading…</div>
+<canvas id="cv"></canvas>
+<script>
+(async()=>{
+  const times = [1, 4, 7, 10, 13, 16, 19, 22];
+  const v = document.createElement("video");
+  v.src = "/assets/video/pizza-new.mp4"; v.muted = true;
+  await new Promise((res,rej)=>{ v.onloadedmetadata=res; v.onerror=()=>rej(new Error("load")); });
+  const fw = 180, fh = Math.round(fw * v.videoHeight / v.videoWidth);
+  const cv = document.getElementById("cv");
+  cv.width = fw * 4; cv.height = fh * 2;
+  const ctx = cv.getContext("2d");
+  ctx.fillStyle = "#ff0"; ctx.font = "bold 20px monospace";
+  for (let i = 0; i < times.length; i++) {
+    v.currentTime = times[i];
+    await new Promise(res => v.onseeked = res);
+    const x = (i % 4) * fw, y = Math.floor(i / 4) * fh;
+    ctx.drawImage(v, x, y, fw, fh);
+    ctx.fillText(times[i] + "s", x + 8, y + 26);
+  }
+  document.getElementById("status").textContent = "DONE " + Math.round(v.duration) + "s total";
+})().catch(e => document.getElementById("status").textContent = "ERROR " + e.message);
+</script>
+</body></html>

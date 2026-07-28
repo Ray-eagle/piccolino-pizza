@@ -5,8 +5,7 @@
 <canvas id="cv"></canvas>
 <script>
 const JOBS = [
-  { src:"/assets/video/pizza-burger.mp4", out:"pizza-burger-preview", start:29, dur:10 },
-  { src:"/assets/video/quality.mp4", out:"quality-preview", start:0, dur:8 }
+  { src:"/assets/video/pizza-new.mp4", out:"pizza-preview", start:4, dur:10, posterAt:16 }
 ];
 const status = document.getElementById("status");
 window.__enc = {};
@@ -27,26 +26,30 @@ async function encodeOne(job, mime){
   const v = document.createElement("video");
   v.src = job.src; v.muted = true; v.playsInline = true;
   await new Promise((res,rej)=>{ v.onloadedmetadata = res; v.onerror = ()=>rej(new Error("load fail")); });
-  const W = 540, H = Math.round(540 * v.videoHeight / v.videoWidth);
-  const cv = document.getElementById("cv"); cv.width = W; cv.height = H;
+  const W = v.videoWidth, H = v.videoHeight;
+  const cv = document.getElementById("cv"); cv.width = 540; cv.height = Math.round(540 * H / W);
   const ctx = cv.getContext("2d");
   v.currentTime = Math.min(job.start, Math.max(0, v.duration - job.dur));
   await new Promise(res => v.onseeked = res);
-  const stream = cv.captureStream(30);
-  const rec = new MediaRecorder(stream, { mimeType: mime, videoBitsPerSecond: 1400000 });
+  const stream = v.captureStream();
+  const rec = new MediaRecorder(stream, { mimeType: mime, videoBitsPerSecond: 900000 });
   const chunks = [];
   rec.ondataavailable = e => { if (e.data.size) chunks.push(e.data); };
   const done = new Promise(res => rec.onstop = res);
-  let raf;
-  const draw = () => { ctx.drawImage(v, 0, 0, W, H); raf = requestAnimationFrame(draw); };
-  await v.play(); draw(); rec.start(250);
-  await new Promise(res => setTimeout(res, job.dur * 1000));
-  rec.stop(); v.pause(); cancelAnimationFrame(raf);
+  await v.play(); rec.start(250);
+  await new Promise(res => { const t0 = v.currentTime; const iv = setInterval(() => { if (v.currentTime - t0 >= job.dur) { clearInterval(iv); res(); } }, 200); });
+  rec.stop(); v.pause();
   await done;
   const blob = new Blob(chunks, { type: mime.split(";")[0] });
   const fr = new FileReader();
   const dataUrl = await new Promise(res => { fr.onload = ()=>res(fr.result); fr.readAsDataURL(blob); });
   window.__enc[job.out] = dataUrl;
+  if (job.posterAt !== undefined) {
+    v.currentTime = job.posterAt;
+    await new Promise(res => v.onseeked = res);
+    ctx.drawImage(v, 0, 0, cv.width, cv.height);
+    window.__enc[job.out + "-poster"] = cv.toDataURL("image/jpeg", 0.8);
+  }
   return { size: blob.size, w: W, h: H };
 }
 
