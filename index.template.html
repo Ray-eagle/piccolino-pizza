@@ -336,7 +336,7 @@
     </div>
   </div>
   <div class="hero-photo rv">
-    <div class="frame"><video data-vid="club-cut.mp4" data-rate="1.22" poster="{{IMG:club-slow-poster.jpg}}" autoplay muted loop playsinline aria-label="Club pizza video from the Piccolino kitchen"></video></div>
+    <div class="frame"><video data-vid="club-cut.mp4" data-rate="1.22" data-slow-at="6.6" data-slow-rate="0.55" data-cut="7.46" poster="{{IMG:club-slow-poster.jpg}}" autoplay muted loop playsinline aria-label="Club pizza video from the Piccolino kitchen"></video></div>
     <span class="chip" data-i18n="chip_hero">Club Pizza — house favorite</span>
   </div>
 </section>
@@ -697,9 +697,18 @@
     if (reduceMotion) { v.removeAttribute("autoplay"); return; }
     v.src = VIDS[v.dataset.vid];
     const rate = parseFloat(v.dataset.rate || "1");
+    const slowAt = parseFloat(v.dataset.slowAt || "0");
+    const slowRate = parseFloat(v.dataset.slowRate || "1");
+    const cutAt = parseFloat(v.dataset.cut || "0");
     const applyRate = () => { v.playbackRate = rate; };
     applyRate();
     v.addEventListener("play", applyRate);
+    if (slowAt || cutAt) {
+      v.addEventListener("timeupdate", () => {
+        if (cutAt && v.currentTime >= cutAt) { v.currentTime = 0; v.playbackRate = rate; return; }
+        v.playbackRate = (slowAt && v.currentTime >= slowAt) ? slowRate : rate;
+      });
+    }
     v.play().catch(()=>{});
   });
 
