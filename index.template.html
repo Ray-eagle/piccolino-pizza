@@ -50,10 +50,10 @@
     border-bottom:1px solid var(--line);
   }
   .nav .logo img{ height:46px; width:auto; }
-  nav.links{ display:flex; gap:1.6rem; align-items:center; }
+  nav.links{ display:flex; gap:1.6rem; align-items:center; margin-left:auto; }
   nav.links a{ text-decoration:none; font-weight:600; font-size:.9rem; color:var(--white); }
   nav.links a:hover{ color:var(--yellow); }
-  .navbrk{ display:none; }
+  .acts{ display:flex; gap:.8rem; align-items:center; }
   .lang{
     background:none; border:1px solid var(--line); color:var(--smoke);
     font:inherit; font-size:.78rem; font-weight:700; letter-spacing:.08em;
@@ -289,31 +289,34 @@
     .hero .kicker::before{ display:none; }
     .hero .cta-row{ justify-content:center; }
     .hero .sub{ margin-inline:auto; }
-    .hero-photo{ order:-1; max-width:min(88vw, 430px); margin:0 auto; }
-    .hero-photo .frame{ aspect-ratio:9/16; }  /* full reel frame on mobile — nothing cropped, food visible to the end */
+    .hero-photo{ order:-1; max-width:min(72vw, 360px); margin:0 auto; }
     .feature{ grid-template-columns:1fr; }
     .feature .photo{ max-width:420px; margin:0 auto; }
     .story .grid{ grid-template-columns:1fr; }
     .story .photo{ max-width:420px; margin:0 auto; order:2; }
     .gal{ grid-template-columns:repeat(2,1fr); }
-    header.nav{ padding-bottom:.5rem; }
-    nav.links{ flex-wrap:wrap; justify-content:flex-end; gap:.9rem; row-gap:.45rem; }
-    .navbrk{ display:block; flex-basis:100%; height:0; order:4; }
-    nav.links a.navlink{ order:5; font-size:.84rem; }
+    header.nav{ flex-wrap:wrap; padding-bottom:.55rem; row-gap:.4rem; }
+    .nav .logo img{ height:38px; }
+    .acts{ margin-left:auto; gap:.55rem; }
+    .acts .btn{ padding:.5rem .95rem; font-size:.72rem; }
+    .acts .lang{ padding:.3rem .6rem; font-size:.68rem; }
+    nav.links{ order:3; flex-basis:100%; justify-content:center; gap:1.15rem; margin-left:0; }
+    nav.links a.navlink{ font-size:.85rem; }
   }
 </style>
 
 <header class="nav">
   <a class="logo" href="#top" aria-label="Piccolino"><img src="{{IMG:logo-1000.png}}" alt="Piccolino Fast Food &amp; Pizza"></a>
   <nav class="links">
-    <span class="navbrk" aria-hidden="true"></span>
     <a class="navlink" href="#/menu" data-i18n="nav_menu">Menu</a>
     <a class="navlink" href="#pizzaburger" data-i18n="nav_pb">Pizza Burger</a>
     <a class="navlink" href="#story" data-i18n="nav_story">Story</a>
     <a class="navlink" href="#visit" data-i18n="nav_visit">Find Us</a>
+  </nav>
+  <div class="acts">
     <button class="lang" id="langBtn" aria-label="Ndrysho gjuhën / change language">SHQIP</button>
     <a class="btn" href="tel:+355692829555" data-i18n="nav_order">Order Now</a>
-  </nav>
+  </div>
 </header>
 
 <!-- =================== HOME =================== -->
@@ -333,7 +336,7 @@
     </div>
   </div>
   <div class="hero-photo rv">
-    <div class="frame"><video data-vid="club-pizza.mp4" poster="{{IMG:club-pizza.jpg}}" autoplay muted loop playsinline aria-label="Club pizza video from the Piccolino kitchen"></video></div>
+    <div class="frame"><video data-vid="club-slow.mp4" poster="{{IMG:club-slow-poster.jpg}}" autoplay muted loop playsinline aria-label="Club pizza served fresh"></video></div>
     <span class="chip" data-i18n="chip_hero">Club Pizza — house favorite</span>
   </div>
 </section>
@@ -684,7 +687,7 @@
 
   // =============== videos: single copy of each clip, assigned at runtime ===============
   const VIDS = {
-    "club-pizza.mp4": "{{VID:club-pizza.mp4}}",
+    "club-slow.mp4": "{{VID:club-slow.mp4}}",
     "pizza-preview.mp4": "{{VID:pizza-preview.mp4}}",
     "pizza-burger-preview.mp4": "{{VID:pizza-burger-preview.mp4}}",
     "quality-preview.mp4": "{{VID:quality-preview.mp4}}"
