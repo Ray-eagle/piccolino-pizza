@@ -53,6 +53,7 @@
   nav.links{ display:flex; gap:1.6rem; align-items:center; }
   nav.links a{ text-decoration:none; font-weight:600; font-size:.9rem; color:var(--white); }
   nav.links a:hover{ color:var(--yellow); }
+  .navbrk{ display:none; }
   .lang{
     background:none; border:1px solid var(--line); color:var(--smoke);
     font:inherit; font-size:.78rem; font-weight:700; letter-spacing:.08em;
@@ -294,13 +295,17 @@
     .story .grid{ grid-template-columns:1fr; }
     .story .photo{ max-width:420px; margin:0 auto; order:2; }
     .gal{ grid-template-columns:repeat(2,1fr); }
-    nav.links a.navlink{ display:none; }
+    header.nav{ padding-bottom:.5rem; }
+    nav.links{ flex-wrap:wrap; justify-content:flex-end; gap:.9rem; row-gap:.45rem; }
+    .navbrk{ display:block; flex-basis:100%; height:0; order:4; }
+    nav.links a.navlink{ order:5; font-size:.84rem; }
   }
 </style>
 
 <header class="nav">
   <a class="logo" href="#top" aria-label="Piccolino"><img src="{{IMG:logo-1000.png}}" alt="Piccolino Fast Food &amp; Pizza"></a>
   <nav class="links">
+    <span class="navbrk" aria-hidden="true"></span>
     <a class="navlink" href="#/menu" data-i18n="nav_menu">Menu</a>
     <a class="navlink" href="#pizzaburger" data-i18n="nav_pb">Pizza Burger</a>
     <a class="navlink" href="#story" data-i18n="nav_story">Story</a>
@@ -323,6 +328,7 @@
       <a class="btn" href="#/menu" data-i18n="cta_menu">See the full menu</a>
       <a class="btn ghost" href="tel:+355692829555" data-i18n="cta_order">Order: 069 282 9555</a>
       <a class="btn ghost" href="https://wa.me/355692829555" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="btn ghost" style="border-color:var(--yellow); color:var(--yellow);" href="https://www.google.com/maps/search/?api=1&amp;query=Piccolino+Pizza+Bulevardi+Shen+Gjergji+Korce" target="_blank" rel="noopener" data-i18n="rev_g">★ 4.2 on Google</a>
     </div>
   </div>
   <div class="hero-photo rv">
@@ -376,10 +382,10 @@
       <h2 class="display" data-i18n="menu_title">The Menu</h2>
     </div>
     <div class="tease-grid rv">
-      <a class="tease" href="#/menu"><p class="cat display">Pizza</p><p class="n" data-i18n="t_pizza">24 varieties · 4 sizes, 20–40 cm</p><p class="from" data-i18n="t_pizza_f">from 250 L</p></a>
-      <a class="tease" href="#/menu"><p class="cat display">Burgers</p><p class="n" data-i18n="t_burg">10 burgers · 100% beef</p><p class="from" data-i18n="t_burg_f">from 250 L</p></a>
-      <a class="tease" href="#/menu"><p class="cat display">Pita &amp; Sandwich</p><p class="n" data-i18n="t_pita">Pita, club sandwiches, tost</p><p class="from" data-i18n="t_pita_f">from 100 L</p></a>
-      <a class="tease" href="#/menu"><p class="cat display">Dolce Vitta</p><p class="n" data-i18n="t_dolce">Sweet pizzas — Oreo, Kinder, Nutella</p><p class="from" data-i18n="t_dolce_f">from 300 L</p></a>
+      <a class="tease" href="#/menu/pizza"><p class="cat display">Pizza</p><p class="n" data-i18n="t_pizza">24 varieties · 4 sizes, 20–40 cm</p><p class="from" data-i18n="t_pizza_f">from 250 L</p></a>
+      <a class="tease" href="#/menu/burgers"><p class="cat display">Burgers</p><p class="n" data-i18n="t_burg">10 burgers · 100% beef</p><p class="from" data-i18n="t_burg_f">from 250 L</p></a>
+      <a class="tease" href="#/menu/sandwich"><p class="cat display">Pita &amp; Sandwich</p><p class="n" data-i18n="t_pita">Pita, club sandwiches, tost</p><p class="from" data-i18n="t_pita_f">from 100 L</p></a>
+      <a class="tease" href="#/menu/dolce"><p class="cat display">Dolce Vitta</p><p class="n" data-i18n="t_dolce">Sweet pizzas — Oreo, Kinder, Nutella</p><p class="from" data-i18n="t_dolce_f">from 300 L</p></a>
     </div>
     <div class="tease-cta rv">
       <a class="btn" href="#/menu" style="font-size:.95rem; padding:.9rem 1.8rem;" data-i18n="menu_all">View the full menu</a>
@@ -448,15 +454,15 @@
         <p><strong>Piccolino Fast Food &amp; Pizza</strong></p>
         <p>Bulevardi Shën Gjergji</p>
         <p>Pedonale, Korçë, Albania</p>
+        <p style="color:var(--yellow); font-weight:800; margin-top:.6rem;">★★★★<span style="opacity:.35">★</span> <span data-i18n="rev_v">4.2 on Google</span></p>
         <p style="margin-top:1rem;"><a class="btn ghost" href="https://www.google.com/maps/search/?api=1&amp;query=Piccolino+Pizza+Bulevardi+Shen+Gjergji+Korce" target="_blank" rel="noopener" data-i18n="v_maps">Open in Google Maps</a></p>
       </div>
       <div class="visit-card">
         <h3 class="display" data-i18n="v_hours">Hours</h3>
         <table class="hours">
-          <tr><td data-i18n="v_monsat">Monday – Saturday</td><td>09:00 – 23:00</td></tr>
-          <tr><td data-i18n="v_sun">Sunday</td><td>10:00 – 23:00</td></tr>
+          <tr><td data-i18n="v_all">Monday – Sunday</td><td>08:00 – 24:00</td></tr>
         </table>
-        <p class="muted" style="margin-top:1.1rem;" data-i18n="v_hnote">Sample hours — tell us the real ones.</p>
+        <p class="muted" style="margin-top:1.1rem;" data-i18n="v_open">Open every day.</p>
       </div>
       <div class="visit-card">
         <h3 class="display" data-i18n="v_order">Order</h3>
@@ -491,7 +497,7 @@
   <svg class="heartbeat" viewBox="0 0 200 30" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2 15h60l8-11 10 22 8-16 6 5h104" stroke="#FFCD39" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
   <p><span class="accent-serif">"Një herë piccolino, gjithmonë piccolino."</span></p>
   <p>Bulevardi Shën Gjergji, Pedonale, Korçë · <a href="tel:+355692829555">069 282 9555</a> · <a href="https://www.instagram.com/piccolino_pizza/" target="_blank" rel="noopener">@piccolino_pizza</a></p>
-  <p>© 2026 Piccolino Fast Food &amp; Pizza</p>
+  <p>© 2016 Piccolino Fast Food &amp; Pizza</p>
 </footer>
 
 <script>
@@ -652,10 +658,14 @@
   const pageHome = document.getElementById("page-home");
   const pageMenu = document.getElementById("page-menu");
   function route(){
-    const isMenu = location.hash === "#/menu";
+    const m = location.hash.match(/^#\/menu(?:\/([a-z]+))?$/);
+    const isMenu = !!m;
     pageHome.hidden = isMenu;
     pageMenu.hidden = !isMenu;
-    if (isMenu) { window.scrollTo(0,0); }
+    if (isMenu) {
+      if (m[1]) { setTimeout(() => document.getElementById("mcat-" + m[1])?.scrollIntoView({ behavior:"instant", block:"start" }), 60); }
+      else { window.scrollTo(0,0); }
+    }
     else {
       const id = location.hash.slice(1);
       if (id && !id.startsWith("/")) document.getElementById(id)?.scrollIntoView();
@@ -717,7 +727,8 @@
     st_label:"Historia jonë", st_q1:"Kuzhinë e vogël.", st_q2:"Zemër e madhe.", st_q3:"Gjithçka gatuhet kur e porosit.",
     st_body:"Piccolino do të thotë \"i vogli\" — dhe kjo është e gjithë ideja. Një kuzhinë e vogël në Pedonalen e Korçës që bën pak gjëra, por i bën shumë mirë: brumë i freskët çdo ditë, përbërës të zgjedhur me kujdes, dhe çdo porosi me vëmendje maksimale nga përbërësi i parë deri në momentin që e merr në dorë.",
     v_kick:"eja i uritur", v_title:"Na gjeni", v_loc:"Vendndodhja", v_maps:"Hape në Google Maps",
-    v_hours:"Orari", v_monsat:"E hënë – E shtunë", v_sun:"E diel", v_hnote:"Orar shembull — na thoni atë realin.",
+    rev_g:"★ 4.2 në Google", rev_v:"4.2 në Google",
+    v_hours:"Orari", v_all:"E hënë – E diel", v_open:"Hapur çdo ditë.",
     v_order:"Porosit", v_onote:"Telefono ose shkruaj në WhatsApp për marrje &amp; dërgesa — ose porosit në aplikacionin Foodini.",
     mp_kick:"Piccolino · Korçë", mp_t1:"Menuja", mp_t2:"jonë", mp_arrive:"\"Shija mbërrin tek ty!\"", mp_order:"Porosit tani — 069 282 9555"
   };
