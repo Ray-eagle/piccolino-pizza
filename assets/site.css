@@ -145,7 +145,8 @@
       background:rgba(17,16,16,.72);backdrop-filter:blur(8px);cursor:pointer;
       display:grid;place-items:center;
     }
-    .play-reel:before{
+    .hero-caption{margin:16px 6px 0;color:var(--muted);font-size:.92rem;text-align:center;font-style:italic;font-family:Georgia,"Times New Roman",serif}
+.play-reel:before{
       content:"";margin-left:4px;width:0;height:0;
       border-top:7px solid transparent;border-bottom:7px solid transparent;border-left:11px solid var(--yellow)
     }

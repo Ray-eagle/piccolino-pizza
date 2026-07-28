@@ -129,7 +129,8 @@ const MENU = [
         come_hungry:"Eja i uritur",find_us:'Na <span class="yellow">gjeni.</span>',location:"Vendndodhja",maps:"Google Maps",hours:"Orari",
         mon_sun:"E hënë – E diel",open_everyday:"Hapur çdo ditë.",order_title:"Porosit",order_note:"Telefono ose shkruaj në WhatsApp për porosi — ose porosit në aplikacionin Foodini.",
         search:"Kërko në menu…",new:"E RE",prices:"Çmimet në lekë",no_results:"Nuk u gjet asnjë produkt.",
-        menu_cta_copy:"86 produkte reale — pizza në 4 madhësi, burgera, pita, tacos dhe më shumë.",see_full_menu:"Shiko menunë e plotë",home:"Kryefaqja"
+        menu_cta_copy:"86 produkte reale — pizza në 4 madhësi, burgera, pita, tacos dhe më shumë.",see_full_menu:"Shiko menunë e plotë",home:"Kryefaqja",
+        hero_video_desc:"Club Pizza — guda, proshutë e pancetë në brumë pice, të shoqëruara me patate dhe salcë shtëpie."
       },
       en:{
         nav_special:"Signature",nav_menu:"Menu",nav_story:"Story",nav_visit:"Find us",order:"Order",
@@ -146,7 +147,8 @@ const MENU = [
         come_hungry:"Come hungry",find_us:'Find <span class="yellow">us.</span>',location:"Location",maps:"Google Maps",hours:"Hours",
         mon_sun:"Monday – Sunday",open_everyday:"Open every day.",order_title:"Order",order_note:"Call or message us on WhatsApp to order — or order on the Foodini app.",
         search:"Search the menu…",new:"NEW",prices:"Prices in lek",no_results:"No menu items found.",
-        menu_cta_copy:"86 real items — pizza in 4 sizes, burgers, pita, tacos and more.",see_full_menu:"View the full menu",home:"Home"
+        menu_cta_copy:"86 real items — pizza in 4 sizes, burgers, pita, tacos and more.",see_full_menu:"View the full menu",home:"Home",
+        hero_video_desc:"Club Pizza — gouda, ham and bacon folded in pizza dough, served with fries and house sauce."
       }
     };
 
