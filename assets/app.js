@@ -294,11 +294,18 @@ function windowedLoop(v) {
   const cut = parseFloat(v.dataset.cut || "0");
   const slowAt = parseFloat(v.dataset.slowAt || "0");
   const slowRate = parseFloat(v.dataset.slowRate || "1");
+  const skip = (v.dataset.skip || "").split("-").map(Number).filter(n => !isNaN(n)); // "a-b" jumps over that range
+  const check = () => {
+    const t = v.currentTime;
+    if (skip.length === 2 && t >= skip[0] && t < skip[1]) { v.currentTime = skip[1]; return; }
+    if (cut && t >= cut) { v.currentTime = start; v.playbackRate = 1; return; }
+    v.playbackRate = (slowAt && t >= slowAt) ? slowRate : 1;
+  };
   if (start) v.addEventListener("loadedmetadata", () => { try { v.currentTime = start; } catch (e) {} });
-  v.addEventListener("timeupdate", () => {
-    if (cut && v.currentTime >= cut) { v.currentTime = start; v.playbackRate = 1; return; }
-    v.playbackRate = (slowAt && v.currentTime >= slowAt) ? slowRate : 1;
-  });
+  v.addEventListener("timeupdate", check);
+  let iv = null;
+  v.addEventListener("play", () => { if (!iv) iv = setInterval(check, 120); });
+  v.addEventListener("pause", () => { clearInterval(iv); iv = null; });
 }
 
 const hero = document.getElementById("heroVideo");
