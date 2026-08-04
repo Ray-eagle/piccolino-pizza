@@ -115,14 +115,14 @@ const MENU = [
 
     const I18N = {
       sq:{
-        nav_special:"Specialiteti",nav_menu:"Menuja",nav_story:"Historia",nav_visit:"Na gjeni",order:"Porosit",
+        nav_special:"Specialiteti",nav_menu:"Menu",nav_story:"Historia",nav_visit:"Na gjeni",order:"Porosit",
         hero_1:"Një herë",hero_2:"Gjithmonë Piccolino.",slogan:"“Shija që të bën të kthehesh.”",
         hero_lead:"Pizza, burger dhe fast food të përgatitura në moment — në zemër të Pedonales së Korçës.",
         see_menu:"Shiko menunë",call:"Telefono",open_daily:"Hapur çdo ditë 08:00–24:00",fresh_daily:"Brumë i freskët çdo ditë",rating:"★ 4.2 në Google",rating_v:"4.2 në Google",
         house_favorite:"Pica jonë · bërë në moment",original:"Origjinal<br>Piccolino",signature_label:"Specialiteti ynë",
         signature_copy:"Gjysmë pizza, gjysmë burger, zero kompromis. Brumë pice i pjekur në moment, dy qofte, kroketa djathi, domate dhe turshi.",
         sig_1:"Përgatitet vetëm pasi e porosit",sig_2:"Dy qofte + kroketa djathi",sig_3:"Shërbehet me patate · 500 L",try_now:"Provoje tani",
-        menu_title:'Menuja <span class="yellow">jonë.</span>',menu_intro:"Zgjidh kategorinë, kërko produktin dhe telefono direkt. Çmimet janë në lekë.",
+        menu_title:'Menu<span class="yellow">.</span>',menu_intro:"Zgjidh kategorinë, kërko produktin dhe telefono direkt. Çmimet janë në lekë.",
         kitchen_label:"Direkt nga kuzhina",gallery_title:'Shiko <span class="yellow">shijen.</span>',gallery_copy:"Pa foto stok. Këto janë produktet dhe kuzhina reale e Piccolino-s.",
         fresh_kitchen:"Nga kuzhina",takeaway:"Për me vete",story_label:"Historia jonë",story_1:"Kuzhinë e vogël.",story_2:"Zemër e madhe.",
         story_body:"Piccolino do të thotë “i vogli”. Një kuzhinë e vogël në Pedonalen e Korçës që fokusohet te gjërat që kanë rëndësi: brumë i freskët, përbërës të zgjedhur dhe çdo porosi e përgatitur me vëmendje.",
