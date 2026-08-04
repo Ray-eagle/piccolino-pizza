@@ -7,7 +7,7 @@
 (async()=>{
   const times = [0.5, 2, 3.5, 5, 6.5, 8, 10, 12];
   const v = document.createElement("video");
-  v.src = "/assets/video/pizza-burger.mp4"; v.muted = true;
+  v.src = "/assets/video/quality.mp4"; v.muted = true;
   await new Promise((res,rej)=>{ v.onloadedmetadata=res; v.onerror=()=>rej(new Error("load")); });
   const fw = 180, fh = Math.round(fw * v.videoHeight / v.videoWidth);
   const cv = document.getElementById("cv");

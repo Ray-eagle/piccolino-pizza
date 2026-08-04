@@ -119,7 +119,7 @@ const MENU = [
         hero_1:"Një herë",hero_2:"Gjithmonë Piccolino.",slogan:"“Shija që të bën të kthehesh.”",
         hero_lead:"Pizza, burger dhe fast food të përgatitura në moment — në zemër të Pedonales së Korçës.",
         see_menu:"Shiko menunë",call:"Telefono",open_daily:"Hapur çdo ditë 08:00–24:00",fresh_daily:"Brumë i freskët çdo ditë",rating:"★ 4.2 në Google",rating_v:"4.2 në Google",
-        house_favorite:"Club Pizza · e preferuara",original:"Origjinal<br>Piccolino",signature_label:"Specialiteti ynë",
+        house_favorite:"Pica jonë · bërë në moment",original:"Origjinal<br>Piccolino",signature_label:"Specialiteti ynë",
         signature_copy:"Gjysmë pizza, gjysmë burger, zero kompromis. Brumë pice i pjekur në moment, dy qofte, kroketa djathi, domate dhe turshi.",
         sig_1:"Përgatitet vetëm pasi e porosit",sig_2:"Dy qofte + kroketa djathi",sig_3:"Shërbehet me patate · 500 L",try_now:"Provoje tani",
         menu_title:'Menuja <span class="yellow">jonë.</span>',menu_intro:"Zgjidh kategorinë, kërko produktin dhe telefono direkt. Çmimet janë në lekë.",
@@ -130,14 +130,14 @@ const MENU = [
         mon_sun:"E hënë – E diel",open_everyday:"Hapur çdo ditë.",order_title:"Porosit",order_note:"Telefono ose shkruaj në WhatsApp për porosi — ose porosit në aplikacionin Foodini.",
         search:"Kërko në menu…",new:"E RE",prices:"Çmimet në lekë",no_results:"Nuk u gjet asnjë produkt.",
         menu_cta_copy:"86 produkte reale — pizza në 4 madhësi, burgera, pita, tacos dhe më shumë.",see_full_menu:"Shiko menunë e plotë",home:"Kryefaqja",
-        hero_video_desc:"Club Pizza — guda, proshutë e pancetë në brumë pice, të shoqëruara me patate dhe salcë shtëpie."
+        hero_video_desc:"Nga brumi te furra — çdo picë hapet me dorë dhe përgatitet në moment."
       },
       en:{
         nav_special:"Signature",nav_menu:"Menu",nav_story:"Story",nav_visit:"Find us",order:"Order",
         hero_1:"Once",hero_2:"Always Piccolino.",slogan:"“The taste that brings you back.”",
         hero_lead:"Pizza, burgers and honest fast food made fresh when you order — in the heart of Korçë’s pedestrian street.",
         see_menu:"View menu",call:"Call",open_daily:"Open daily 08:00–24:00",fresh_daily:"Fresh dough every day",rating:"★ 4.2 on Google",rating_v:"4.2 on Google",
-        house_favorite:"Club Pizza · house favorite",original:"Piccolino<br>Original",signature_label:"Our signature",
+        house_favorite:"Our pizza · made to order",original:"Piccolino<br>Original",signature_label:"Our signature",
         signature_copy:"Half pizza, half burger, zero compromise. Fresh pizza dough, two beef patties, cheese croquettes, tomato and pickles.",
         sig_1:"Made only after you order",sig_2:"Two patties + cheese croquettes",sig_3:"Served with fries · 500 L",try_now:"Try it now",
         menu_title:'Our <span class="yellow">menu.</span>',menu_intro:"Choose a category, search an item and call directly. Prices are in Albanian lek.",
@@ -148,7 +148,7 @@ const MENU = [
         mon_sun:"Monday – Sunday",open_everyday:"Open every day.",order_title:"Order",order_note:"Call or message us on WhatsApp to order — or order on the Foodini app.",
         search:"Search the menu…",new:"NEW",prices:"Prices in lek",no_results:"No menu items found.",
         menu_cta_copy:"86 real items — pizza in 4 sizes, burgers, pita, tacos and more.",see_full_menu:"View the full menu",home:"Home",
-        hero_video_desc:"Club Pizza — gouda, ham and bacon folded in pizza dough, served with fries and house sauce."
+        hero_video_desc:"From dough to oven — every pizza is hand-stretched and made the moment you order."
       }
     };
 
